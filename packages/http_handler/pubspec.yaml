@@ -1,0 +1,16 @@
+name: http_handler
+description: A simple command-line application.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  equatable: ^2.0.3
+  http: ^0.13.4
+  path: ^1.8.0
+
+dev_dependencies:
+  lints: ^1.0.0
+  very_good_analysis: ^2.4.0
