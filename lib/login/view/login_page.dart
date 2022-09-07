@@ -3,7 +3,6 @@ import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weappear/login/bloc/login_bloc.dart';
-import 'package:weappear_localizations/weappear_localizations.dart';
 
 class PageLogin extends StatelessWidget {
   const PageLogin({Key? key}) : super(key: key);

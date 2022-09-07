@@ -16,7 +16,7 @@ class AuthRepository {
   ///
   /// Only exposed for testing purposes. Do not use directly.
   @visibleForTesting
-  static const authority = 'weappe.ar';
+  static const authority = 'dev.weappe.ar';
 
   final HttpHandler _httpClient;
 
