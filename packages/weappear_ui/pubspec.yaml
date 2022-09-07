@@ -28,16 +28,34 @@ flutter:
     - assets/
 
   fonts:
-    - family: SegoeUI
+    - family: Gravity
       fonts:
-        - asset: fonts/segoe_ui/Segoe UI Bold Italic.ttf
-          weight: 700
+        - asset: fonts/gravity/Gravity-UltraLight.otf
+          weight: 100
+          style: normal
+        - asset: fonts/gravity/Gravity-UltraLightItalic.otf
+          weight: 100
           style: italic
-        - asset: fonts/segoe_ui/Segoe UI Bold.ttf
-          weight: 700
-        - asset: fonts/segoe_ui/Segoe UI.ttf
+        - asset: fonts/gravity/Gravity-Light.otf
+          weight: 200
+          style: normal
+        - asset: fonts/gravity/Gravity-LightItalic.otf
+          weight: 200
+          style: italic
+        - asset: fonts/gravity/Gravity-Book.otf
+          weight: 300
+          style: normal
+        - asset: fonts/gravity/Gravity-BookItalic.otf
+          weight: 300
+          style: italic
+        - asset: fonts/gravity/Gravity-Regular.otf
           weight: 400
           style: normal
-        - asset: fonts/segoe_ui/Segoe UI Italic.ttf
+        - asset: fonts/gravity/Gravity-Italic.otf
           weight: 400
           style: italic
+        - asset: fonts/gravity/Gravity-BoldItalic.otf
+          weight: 700
+          style: italic
+        - asset: fonts/gravity/Gravity-Bold.otf
+          weight: 700

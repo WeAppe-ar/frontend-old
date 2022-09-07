@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
+  appsize: ^1.2.0
   auth_repository:
     path: packages/auth_repository
   bloc: ^8.0.3
@@ -22,6 +23,8 @@ dependencies:
     path: packages/http_handler
   weappear_localizations:
     path: packages/weappear_localizations
+  weappear_ui:
+    path: packages/weappear_ui
 
 
 dev_dependencies:
@@ -35,17 +38,5 @@ flutter:
   uses-material-design: true
   generate: true
 
-  fonts:
-    - family: SegoeUI
-      fonts:
-        - asset: fonts/segoe_ui/Segoe UI Bold Italic.ttf
-          weight: 700
-          style: italic
-        - asset: fonts/segoe_ui/Segoe UI Bold.ttf
-          weight: 700
-        - asset: fonts/segoe_ui/Segoe UI.ttf
-          weight: 400
-          style: normal
-        - asset: fonts/segoe_ui/Segoe UI Italic.ttf
-          weight: 400
-          style: italic
+  assets:
+    - assets/icons/

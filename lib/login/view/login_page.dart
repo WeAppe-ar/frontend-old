@@ -47,6 +47,15 @@ class _ViewLoginState extends State<ViewLogin> {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: Scaffold(
+            appBar: AppBar(
+              title: const Text(
+                'Login',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             body: Center(
               child: LayoutBuilder(
                 builder: (context, constraints) {
@@ -71,11 +80,11 @@ class _ViewLoginState extends State<ViewLogin> {
                                   ),
                                   Center(
                                     child: Text(
-                                      context.l10n.loginTitle,
+                                      'INICIAR SESION',
                                       style: TextStyle(
-                                        fontSize: constraints.maxWidth * 0.05,
-                                        fontWeight: FontWeight.bold,
-                                        color: const Color(0xff5e6c84),
+                                        fontSize: constraints.maxWidth * 0.08,
+                                        fontWeight: FontWeight.w400,
+                                        color: const Color(0xff303030),
                                       ),
                                     ),
                                   ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weappear/login/view/login_page.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
+import 'package:weappear_ui/weappear_ui.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -35,14 +36,8 @@ class ViewApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'SegoeUI',
-        scaffoldBackgroundColor: const Color(0xfffbfafc),
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: WeAppearTheme.lightTheme,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -50,7 +45,19 @@ class ViewApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const PageLogin(),
+      home: Navigator(
+        onPopPage: (Route<dynamic> route, dynamic result) => route.didPop(result),
+        pages: const [
+          MaterialPage<void>(
+            child: PageLogin(),
+            key: ValueKey('login'),
+          ),
+          MaterialPage<void>(
+            child: PageLogin(),
+            key: ValueKey('login2asd'),
+          ),
+        ],
+      ),
     );
   }
 }
