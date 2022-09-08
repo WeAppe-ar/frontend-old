@@ -19,7 +19,7 @@ dependencies:
   shimmer: ^2.0.0
 
 dev_dependencies:
-  very_good_analysis: ^2.4.0
+  very_good_analysis: ^3.0.1
 
 flutter:
   uses-material-design: true
