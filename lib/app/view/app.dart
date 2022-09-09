@@ -45,7 +45,8 @@ class ViewApp extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       home: Navigator(
-        onPopPage: (Route<dynamic> route, dynamic result) => route.didPop(result),
+        onPopPage: (Route<dynamic> route, dynamic result) =>
+            route.didPop(result),
         pages: const [
           MaterialPage<void>(
             child: PageLogin(),

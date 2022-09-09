@@ -99,7 +99,10 @@ class _ViewLoginState extends State<ViewLogin> {
                                     controller: _passwordController,
                                   ),
                                   SizedBox(
-                                    height: constraints.maxHeight * (state is BlocStateLoginFailed ? 0.01 : 0.05),
+                                    height: constraints.maxHeight *
+                                        (state is BlocStateLoginFailed
+                                            ? 0.01
+                                            : 0.05),
                                   ),
                                   if (state is BlocStateLoginFailed)
                                     Text(
