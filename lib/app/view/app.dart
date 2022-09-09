@@ -10,10 +10,9 @@ class App extends StatelessWidget {
   const App({
     required AuthRepository authRepository,
     required DataPersistenceRepository dataPersistenceRepository,
-    Key? key,
+    super.key,
   })  : _authRepository = authRepository,
-        _dataPersistenceRepository = dataPersistenceRepository,
-        super(key: key);
+        _dataPersistenceRepository = dataPersistenceRepository;
 
   final AuthRepository _authRepository;
   final DataPersistenceRepository _dataPersistenceRepository;
@@ -31,7 +30,7 @@ class App extends StatelessWidget {
 }
 
 class ViewApp extends StatelessWidget {
-  const ViewApp({Key? key}) : super(key: key);
+  const ViewApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +45,7 @@ class ViewApp extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       home: Navigator(
-        onPopPage: (Route<dynamic> route, dynamic result) =>
-            route.didPop(result),
+        onPopPage: (Route<dynamic> route, dynamic result) => route.didPop(result),
         pages: const [
           MaterialPage<void>(
             child: PageLogin(),

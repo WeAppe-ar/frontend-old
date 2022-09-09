@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weappear/login/bloc/login_bloc.dart';
 
 class PageLogin extends StatelessWidget {
-  const PageLogin({Key? key}) : super(key: key);
+  const PageLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class PageLogin extends StatelessWidget {
 }
 
 class ViewLogin extends StatefulWidget {
-  const ViewLogin({Key? key}) : super(key: key);
+  const ViewLogin({super.key});
 
   @override
   State<ViewLogin> createState() => _ViewLoginState();
@@ -99,10 +99,7 @@ class _ViewLoginState extends State<ViewLogin> {
                                     controller: _passwordController,
                                   ),
                                   SizedBox(
-                                    height: constraints.maxHeight *
-                                        (state is BlocStateLoginFailed
-                                            ? 0.01
-                                            : 0.05),
+                                    height: constraints.maxHeight * (state is BlocStateLoginFailed ? 0.01 : 0.05),
                                   ),
                                   if (state is BlocStateLoginFailed)
                                     Text(

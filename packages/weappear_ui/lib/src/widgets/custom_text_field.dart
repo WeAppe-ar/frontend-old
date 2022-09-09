@@ -102,7 +102,7 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
 
   /// The callback called when the [TextFormField] changes.
-  final Function(String)? onChanged;
+  final void Function(String)? onChanged;
 
   /// The callback called when the [TextFormField] is submitted or needs to be validated.
   final String? Function(String?, BuildContext)? validator;
@@ -114,7 +114,7 @@ class CustomTextField extends StatefulWidget {
   final EdgeInsetsGeometry padding;
 
   /// The callback called when the [TextFormField] is submitted.
-  final Function(String?)? onSubmitted;
+  final void Function(String?)? onSubmitted;
 
   /// The focus node of the [TextFormField].
   final FocusNode? focusNode;
@@ -224,9 +224,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 child: widget.handlePassword
                     ? GestureDetector(
                         child: Icon(
-                          obscure
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility,
+                          obscure ? Icons.visibility_off_outlined : Icons.visibility,
                           color: const Color(0xffA7A8A9),
                         ),
                         onTap: () {

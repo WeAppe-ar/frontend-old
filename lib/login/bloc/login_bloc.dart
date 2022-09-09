@@ -19,10 +19,9 @@ class BlocLogin extends Bloc<BlocEventLogin, BlocStateLogin> {
     on<BlocEventAttemptLogin>(_tryLogin);
   }
 
-  FutureOr<void> _tryLogin(BlocEventAttemptLogin event, Emitter emit) async {
+  FutureOr<void> _tryLogin(BlocEventAttemptLogin event, Emitter<BlocStateLogin> emit) async {
     try {
-      final loginResponse =
-          await _authRepository.login(event.email, event.password);
+      final loginResponse = await _authRepository.login(event.email, event.password);
 
       await _dataPersistenceRepository.setAccessToken(
         loginResponse.accessToken,
