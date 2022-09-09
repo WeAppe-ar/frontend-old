@@ -24,7 +24,8 @@ class BlocLogin extends Bloc<BlocEventLogin, BlocStateLogin> {
     Emitter<BlocStateLogin> emit,
   ) async {
     try {
-      final loginResponse = await _authRepository.login(event.email, event.password);
+      final loginResponse =
+          await _authRepository.login(event.email, event.password);
 
       await _dataPersistenceRepository.setAccessToken(
         loginResponse.accessToken,
