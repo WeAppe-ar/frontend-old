@@ -19,6 +19,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  flutter_native_splash: ^2.2.9
   http_handler:
     path: packages/http_handler
   weappear_localizations:
@@ -40,3 +41,4 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/logo.png
