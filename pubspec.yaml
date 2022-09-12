@@ -29,6 +29,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^9.0.3
+  flutter_native_splash: ^2.2.9
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
@@ -40,3 +41,4 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/images/
