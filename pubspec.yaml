@@ -19,7 +19,6 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
-  flutter_native_splash: ^2.2.9
   http_handler:
     path: packages/http_handler
   weappear_localizations:
@@ -30,6 +29,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^9.0.3
+  flutter_native_splash: ^2.2.9
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
