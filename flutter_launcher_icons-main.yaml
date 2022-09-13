@@ -1,5 +1,5 @@
 flutter_icons:
   android: "launcher_icon"
   image_path: "assets/icons/icon-main-square.png"
-  adaptative_icon_background: "F5F5F5"
+  adaptative_icon_background: "#F5F5F5"
   adaptative_icon_foreground: "assets/icons/icon-main-round.png"
