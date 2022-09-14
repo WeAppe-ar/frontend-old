@@ -1,10 +1,5 @@
 import 'package:appsize/appsize.dart';
-import 'package:auth_repository/auth_repository.dart';
-import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weappear/login/bloc/login_bloc.dart';
 
 class PageRegister extends StatelessWidget {
   const PageRegister({super.key});
@@ -23,12 +18,12 @@ class ViewRegister extends StatefulWidget {
 }
 
 class _ViewRegisterState extends State<ViewRegister> {
+  bool _checkedValue = false;
+
   @override
   Widget build(BuildContext context) {
-    var _checkedValue = false;
-
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
         backgroundColor: const Color(0xfff5f5f5),
         body: LayoutBuilder(
@@ -85,9 +80,7 @@ class _ViewRegisterState extends State<ViewRegister> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
-                              width: 240.sp,
-                              height: 42.sp,
+                            Flexible(
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   labelText: 'Código de Verificación',
