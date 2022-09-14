@@ -1,3 +1,4 @@
+import 'package:appsize/appsize.dart';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
@@ -46,85 +47,126 @@ class _ViewLoginState extends State<ViewLogin> {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: Scaffold(
-            appBar: AppBar(
-              title: const Text(
-                'Login',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            body: Center(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  return SingleChildScrollView(
-                    physics: const ClampingScrollPhysics(),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: constraints.maxWidth * 0.1,
-                      ),
-                      child: Center(
-                        child: Form(
-                          key: _formKey,
-                          child: AutofillGroup(
-                            child: Card(
-                              elevation: 4,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: constraints.maxHeight * 0.02,
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      'INICIAR SESION',
-                                      style: TextStyle(
-                                        fontSize: constraints.maxWidth * 0.08,
-                                        fontWeight: FontWeight.w400,
-                                        color: const Color(0xff303030),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: constraints.maxHeight * 0.02,
-                                  ),
-                                  TextFormField(
-                                    autovalidateMode: AutovalidateMode.always,
-                                    controller: _emailController,
-                                  ),
-                                  TextFormField(
-                                    autovalidateMode: AutovalidateMode.always,
-                                    controller: _passwordController,
-                                  ),
-                                  SizedBox(
-                                    height: constraints.maxHeight *
-                                        (state is BlocStateLoginFailed
-                                            ? 0.01
-                                            : 0.05),
-                                  ),
-                                  if (state is BlocStateLoginFailed)
-                                    Text(
-                                      state.error.toString(),
-                                    ),
-                                  ElevatedButton(
-                                    onPressed: submit,
-                                    child: const Text('Login'),
-                                  ),
-                                  SizedBox(
-                                    height: constraints.maxHeight * 0.05,
-                                  ),
-                                ],
+            body: LayoutBuilder(
+              builder: (context, constraints) {
+                return SingleChildScrollView(
+                  physics: const ClampingScrollPhysics(),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 45.sp,
+                    ),
+                    child: Form(
+                      key: _formKey,
+                      child: AutofillGroup(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 118.sp,
+                            ),
+                            Image(
+                              image: const AssetImage('assets/images/logo_weappear_light.png'),
+                              width: 150.sp,
+                            ),
+                            Text(
+                              'INICIAR SESIÓN',
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w500,
+                                color: const Color(0xff303030),
                               ),
                             ),
-                          ),
+                            SizedBox(
+                              height: 90.sp,
+                            ),
+                            TextFormField(
+                              autovalidateMode: AutovalidateMode.always,
+                              controller: _emailController,
+                              autocorrect: false,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecorations.authInputDecoration(hintext: 'Email'),
+                            ),
+                            SizedBox(
+                              height: 32.sp,
+                            ),
+                            TextFormField(
+                              autovalidateMode: AutovalidateMode.always,
+                              controller: _passwordController,
+                              autocorrect: false,
+                              obscureText: true,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecorations.authInputDecoration(
+                                hintext: 'Contraseña',
+                                suffixIcon: Icons.visibility_off,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 7.sp,
+                            ),
+                            Text(
+                              '¿Olvidaste tu contraseña?',
+                              style: TextStyle(
+                                color: const Color(0xff4285F4),
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              height: constraints.maxHeight * (state is BlocStateLoginFailed ? 0.01 : 0.05),
+                            ),
+                            if (state is BlocStateLoginFailed)
+                              Text(
+                                state.error.toString(),
+                              ),
+                            SizedBox(
+                              height: 50.sp,
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 50.sp,
+                              child: ElevatedButton(
+                                onPressed: submit,
+                                style: ElevatedButton.styleFrom(
+                                  primary: const Color(0xff4285F4),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.sp),
+                                  ),
+                                ),
+                                child: Text(
+                                  'INICIAR SESIÓN',
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 36.sp,
+                            ),
+                            Text(
+                              '¿No tienes cuenta?',
+                              style: TextStyle(
+                                color: const Color(0xffC9C8C8),
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            Text(
+                              'REGISTRATE',
+                              style: TextStyle(
+                                color: const Color(0xff4285F4),
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ),
         );
@@ -140,5 +182,26 @@ class _ViewLoginState extends State<ViewLogin> {
             _passwordController.text,
           );
     }
+  }
+}
+
+class InputDecorations {
+  static InputDecoration authInputDecoration({
+    required String hintext,
+    IconData? suffixIcon,
+  }) {
+    return InputDecoration(
+      focusedBorder: const UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: Color(0xff4285F4),
+        ),
+      ),
+      hintText: hintext,
+      suffixIcon: suffixIcon != null
+          ? Icon(
+              suffixIcon,
+            )
+          : null,
+    );
   }
 }

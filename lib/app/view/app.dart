@@ -1,3 +1,4 @@
+import 'package:appsize/appsize.dart';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,9 @@ class App extends StatelessWidget {
         RepositoryProvider.value(value: _authRepository),
         RepositoryProvider.value(value: _dataPersistenceRepository),
       ],
-      child: const ViewApp(),
+      child: AppSize.child(
+        child: const ViewApp(),
+      ),
     );
   }
 }
@@ -45,8 +48,7 @@ class ViewApp extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       home: Navigator(
-        onPopPage: (Route<dynamic> route, dynamic result) =>
-            route.didPop(result),
+        onPopPage: (Route<dynamic> route, dynamic result) => route.didPop(result),
         pages: const [
           MaterialPage<void>(
             child: PageLogin(),
