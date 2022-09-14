@@ -2,6 +2,7 @@ import 'package:appsize/appsize.dart';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weappear/login/view/login_page.dart';
 import 'package:weappear/register/view/register_page.dart';
@@ -33,8 +34,27 @@ class App extends StatelessWidget {
   }
 }
 
-class ViewApp extends StatelessWidget {
+class ViewApp extends StatefulWidget {
   const ViewApp({super.key});
+
+  @override
+  State<ViewApp> createState() => _ViewAppState();
+}
+
+class _ViewAppState extends State<ViewApp> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: Color(0xfff5f5f5),
+        systemNavigationBarIconBrightness: Brightness.light,
+        statusBarColor: Color(0xfff5f5f5),
+        statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+        statusBarBrightness: Brightness.dark, // For iOS (dark icons)
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
