@@ -28,7 +28,7 @@ class _ViewRegisterState extends State<ViewRegister> {
     var _checkedValue = false;
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: const Color(0xfff5f5f5),
         body: LayoutBuilder(
