@@ -60,7 +60,7 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
           color: WeappearColors.textColor,
           fontWeight: FontWeight.w400,
         ),
-        cursorColor: WeappearColors.blue,
+        cursorColor: WeappearColors.blueActivated,
         decoration: InputDecoration(
           hintText: widget.hintText,
           hintStyle: TextStyle(
@@ -81,7 +81,7 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
           ),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: WeappearColors.blue,
+              color: WeappearColors.blueActivated,
               width: 2.sp,
             ),
           ),
