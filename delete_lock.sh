@@ -1,1 +1,0 @@
-find . -name "pubspec.lock" | xargs rm
