@@ -85,6 +85,17 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
               width: 2.sp,
             ),
           ),
+          errorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: const Color(0xffF44242),
+              width: 2.sp,
+            ),
+          ),
+          errorStyle: TextStyle(
+            fontSize: 12.sp,
+            color: const Color(0xffF44242),
+            fontWeight: FontWeight.w300,
+          ),
           suffixIconConstraints: BoxConstraints(
             maxHeight: 22.sp,
             maxWidth: 30.sp,
