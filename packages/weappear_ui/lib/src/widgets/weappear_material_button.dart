@@ -62,7 +62,7 @@ class _WeappearMaterialButtonState extends State<WeappearMaterialButton> {
       child: Text(
         widget.textMaterialButton,
         style: TextStyle(
-          color: WeappearColors.blue,
+          color: WeappearColors.blueActivated,
           fontSize: widget.fontSize,
           fontWeight: widget.fontWeight,
         ),
