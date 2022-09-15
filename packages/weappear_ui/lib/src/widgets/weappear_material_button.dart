@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weappear_ui/src/common/common.dart';
 
 // {@template weappear_material_nutton}
 /// A [MaterialButton] with WeAppear styling.
@@ -61,7 +62,7 @@ class _WeappearMaterialButtonState extends State<WeappearMaterialButton> {
       child: Text(
         widget.textMaterialButton,
         style: TextStyle(
-          color: const Color(0xffFBFBFB),
+          color: WeappearColors.blue,
           fontSize: widget.fontSize,
           fontWeight: widget.fontWeight,
         ),
