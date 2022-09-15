@@ -18,28 +18,28 @@ class WeappearMaterialButton extends StatefulWidget {
     this.fontWeight,
   });
 
-  ///the height for the button
+  /// The height for the button.
   double height;
 
-  ///the width for the button
+  /// The width for the button.
   double minWidth;
 
   /// The [EdgeInsetsGeometry] of the button.
   EdgeInsetsGeometry? padding;
 
-  ///the elevation for the button
+  /// The elevation for the button.
   double? elevation;
 
   /// The [BorderRadiusGeometry] of the button.
   BorderRadiusGeometry borderRadius;
 
-  ///the string for the text
+  /// The string for the text.
   String textMaterialButton;
 
-  ///the font size for the text
+  /// The font size for the text.
   double? fontSize;
 
-  ///the font weight for the text
+  /// The font weight for the text.
   FontWeight? fontWeight;
 
   @override
