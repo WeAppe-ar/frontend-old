@@ -5,7 +5,7 @@ import 'package:flutter_password_strength/flutter_password_strength.dart';
 class CustomTextField extends StatefulWidget {
   /// Creates a [TextFormField] widget.
   const CustomTextField({
-    Key? key,
+    super.key,
     this.autofillHints = const [],
     this.labelText,
     @Deprecated('Use [labelText] instead') this.hintText,
@@ -23,12 +23,11 @@ class CustomTextField extends StatefulWidget {
     this.autovalidateMode = AutovalidateMode.disabled,
     this.passwordIsCorrect = false,
   })  : handlePassword = false,
-        showStrength = false,
-        super(key: key);
+        showStrength = false;
 
   /// Creates a [TextFormField] widget that defaults its properties to being an Email Input Field.
   CustomTextField.email({
-    Key? key,
+    super.key,
     this.labelText,
     @Deprecated('Use [labelText] instead') this.hintText,
     this.icon,
@@ -48,12 +47,11 @@ class CustomTextField extends StatefulWidget {
         ],
         handlePassword = false,
         showStrength = false,
-        inputType = TextInputType.emailAddress,
-        super(key: key);
+        inputType = TextInputType.emailAddress;
 
   /// Creates a [TextFormField] widget that defaults its properties to being a Password Input Field.
   CustomTextField.password({
-    Key? key,
+    super.key,
     this.labelText,
     @Deprecated('Use [labelText] instead') this.hintText,
     this.icon,
@@ -73,8 +71,7 @@ class CustomTextField extends StatefulWidget {
           AutofillHints.password,
         ],
         handlePassword = true,
-        inputType = TextInputType.visiblePassword,
-        super(key: key);
+        inputType = TextInputType.visiblePassword;
 
   /// The Hints that are used to autofill the textfield.
   final List<String> autofillHints;

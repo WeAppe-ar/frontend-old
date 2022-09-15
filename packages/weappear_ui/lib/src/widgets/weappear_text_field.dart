@@ -57,7 +57,7 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
         validator: widget.validator,
         style: TextStyle(
           fontSize: 14.sp,
-          color: WeappearColors.textColor,
+          color: WeappearColors.grayText,
           fontWeight: FontWeight.w400,
         ),
         cursorColor: WeappearColors.blueActivated,
