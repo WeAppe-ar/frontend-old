@@ -1,3 +1,4 @@
+import 'package:appsize/appsize.dart';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
@@ -72,8 +73,11 @@ class _ViewLoginState extends State<ViewLogin> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                WeappearTextFormField(
-                                  hintText: 'Contraseña',
+                                WeappearMaterialButton(
+                                  minWidth: 10.sp,
+                                  height: 20.sp,
+                                  borderRadius: BorderRadius.circular(10),
+                                  textMaterialButton: 'hola',
                                 ),
                               ],
                             ),
