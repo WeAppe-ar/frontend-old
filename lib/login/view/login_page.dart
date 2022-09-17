@@ -73,11 +73,8 @@ class _ViewLoginState extends State<ViewLogin> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                WeappearMaterialButton(
-                                  minWidth: 10.sp,
-                                  height: 20.sp,
-                                  borderRadius: BorderRadius.circular(10),
-                                  textMaterialButton: 'hola',
+                                WeappearFloatingActionButton(
+                                  onPressed: () {},
                                 ),
                               ],
                             ),
