@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:weappear_ui/src/common/common.dart';
 
-// {@template weappear_material_nutton}
+// {@template weappear_material_button}
 /// A [MaterialButton] with WeAppear styling.
 /// {@endtemplate}
 class WeappearMaterialButton extends StatefulWidget {
-  /// {@macro weappear_text_field}
+  /// {@macro weappear_material_button}
   WeappearMaterialButton({
     super.key,
+    required this.onPressed,
     required this.height,
     required this.minWidth,
     this.padding,
@@ -20,6 +21,9 @@ class WeappearMaterialButton extends StatefulWidget {
 
   /// The height for the button.
   double height;
+
+  ///the onpressed for the button
+  void Function() onPressed;
 
   /// The width for the button.
   double minWidth;
@@ -50,11 +54,13 @@ class _WeappearMaterialButtonState extends State<WeappearMaterialButton> {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: null,
       height: widget.height,
       minWidth: widget.minWidth,
       padding: widget.padding,
       elevation: widget.elevation,
+      disabledColor: const Color(0xffD9D9D9),
+      hoverColor: const Color(0xff4285F4),
       color: const Color(0xff4285F4),
       shape: RoundedRectangleBorder(
         borderRadius: widget.borderRadius,
@@ -62,7 +68,7 @@ class _WeappearMaterialButtonState extends State<WeappearMaterialButton> {
       child: Text(
         widget.textMaterialButton,
         style: TextStyle(
-          color: WeappearColors.blueActivated,
+          color: const Color(0xffFFFFFF),
           fontSize: widget.fontSize,
           fontWeight: widget.fontWeight,
         ),

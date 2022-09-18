@@ -48,6 +48,7 @@ class _ViewLoginState extends State<ViewLogin> {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: Scaffold(
+            backgroundColor: const Color(0xffF5F5F5),
             appBar: AppBar(
               title: const Text(
                 'Login',
@@ -73,9 +74,15 @@ class _ViewLoginState extends State<ViewLogin> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                WeappearFloatingActionButton(
-                                  onPressed: () {},
-                                ),
+                                WeappearMaterialButton(
+                                  onPressed: () {
+                                    return null;
+                                  },
+                                  height: 40.sp,
+                                  minWidth: 10.sp,
+                                  borderRadius: BorderRadius.circular(10),
+                                  textMaterialButton: 'hola mundo',
+                                )
                               ],
                             ),
                           ),
