@@ -26,9 +26,9 @@ dependencies:
   weappear_ui:
     path: packages/weappear_ui
 
-
 dev_dependencies:
   bloc_test: ^9.0.3
+  flutter_launcher_icons: ^0.10.0
   flutter_native_splash: ^2.2.9
   flutter_test:
     sdk: flutter
