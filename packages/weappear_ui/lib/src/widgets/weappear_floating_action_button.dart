@@ -6,13 +6,17 @@ import 'package:flutter/material.dart';
 /// {@endtemplate}
 class WeappearFloatingActionButton extends StatefulWidget {
   /// {@macro weappear_floating_action_button}
-  WeappearFloatingActionButton({
+  const WeappearFloatingActionButton({
     super.key,
     required this.onPressed,
+    this.heroTag,
   });
 
   ///the onpressed for the button
-  void Function() onPressed;
+  final void Function()? onPressed;
+
+  /// The hero tag for the button.
+  final String? heroTag;
 
   @override
   State<WeappearFloatingActionButton> createState() => _WeappearFloatingActionButtonState();
@@ -25,10 +29,11 @@ class _WeappearFloatingActionButtonState extends State<WeappearFloatingActionBut
       height: 52.sp,
       width: 52.sp,
       child: FloatingActionButton(
+        heroTag: widget.heroTag,
         onPressed: widget.onPressed,
-        elevation: 4.sp,
-        splashColor: const Color.fromARGB(255, 171, 200, 247),
-        backgroundColor: const Color(0xffFFFFFF),
+        elevation: 4,
+        splashColor: const Color(0xffDBE1EB),
+        backgroundColor: Colors.white,
         child: Icon(
           Icons.add,
           color: const Color(0xff4285F4),

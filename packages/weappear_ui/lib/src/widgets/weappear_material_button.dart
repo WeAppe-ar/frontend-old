@@ -1,76 +1,127 @@
+import 'package:appsize/appsize.dart';
 import 'package:flutter/material.dart';
-import 'package:weappear_ui/src/common/common.dart';
+import 'package:weappear_ui/src/common/weappear_colors.dart';
 
 // {@template weappear_material_button}
 /// A [MaterialButton] with WeAppear styling.
 /// {@endtemplate}
-class WeappearMaterialButton extends StatefulWidget {
+class WeappearMaterialButton extends StatelessWidget {
   /// {@macro weappear_material_button}
-  WeappearMaterialButton({
+  const WeappearMaterialButton({
     super.key,
     required this.onPressed,
     required this.height,
     required this.minWidth,
     this.padding,
     this.elevation,
-    required this.borderRadius,
-    required this.textMaterialButton,
+    required this.title,
     this.fontSize,
-    this.fontWeight,
+    this.fontWeight = FontWeight.w400,
+    this.shape,
+    this.color = const Color(0xff4285F4),
+    this.useHighlightElevation = true,
+    this.fontColor = const Color(0xffFBFBFB),
+    this.disabledColor = const Color(0xffA1C3FB),
   });
 
+  /// This method creates a [WeappearMaterialButton] with outlined styling.
+  factory WeappearMaterialButton.outlined({
+    required void Function()? onPressed,
+    required double height,
+    required double minWidth,
+    required String title,
+    double? fontSize,
+    FontWeight? fontWeight,
+  }) {
+    final isActive = onPressed != null;
+
+    return WeappearMaterialButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.sp),
+        side: BorderSide(
+          color: isActive ? WeappearColors.blueActivated : const Color(0xffA1C3FB),
+          width: 1.sp,
+        ),
+      ),
+      disabledColor: Colors.transparent,
+      onPressed: onPressed,
+      height: height,
+      minWidth: minWidth,
+      padding: EdgeInsets.zero,
+      elevation: 0,
+      color: Colors.transparent,
+      title: title,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      fontColor: isActive ? WeappearColors.blueActivated : const Color(0xffA1C3FB),
+      useHighlightElevation: false,
+    );
+  }
+
   /// The height for the button.
-  double height;
+  final double height;
 
   ///the onpressed for the button
-  void Function() onPressed;
+  final void Function()? onPressed;
 
   /// The width for the button.
-  double minWidth;
+  final double minWidth;
 
   /// The [EdgeInsetsGeometry] of the button.
-  EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? padding;
 
   /// The elevation for the button.
-  double? elevation;
-
-  /// The [BorderRadiusGeometry] of the button.
-  BorderRadiusGeometry borderRadius;
+  final double? elevation;
 
   /// The string for the text.
-  String textMaterialButton;
+  final String title;
 
   /// The font size for the text.
-  double? fontSize;
+  final double? fontSize;
 
   /// The font weight for the text.
-  FontWeight? fontWeight;
+  final FontWeight? fontWeight;
 
-  @override
-  State<WeappearMaterialButton> createState() => _WeappearMaterialButtonState();
-}
+  /// The [Color] of the button.
+  final Color color;
 
-class _WeappearMaterialButtonState extends State<WeappearMaterialButton> {
+  /// The [Color] of the button text.
+  final Color fontColor;
+
+  /// The disabled [Color] of the button.
+  final Color disabledColor;
+
+  /// The [ShapeBorder] for the button.
+  final ShapeBorder? shape;
+
+  /// Whether we use the highlightElevation is enabled or not.
+  final bool useHighlightElevation;
+
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: null,
-      height: widget.height,
-      minWidth: widget.minWidth,
-      padding: widget.padding,
-      elevation: widget.elevation,
-      disabledColor: const Color(0xffD9D9D9),
+      onPressed: onPressed,
+      height: height,
+      minWidth: minWidth,
+      padding: padding,
+      highlightElevation: useHighlightElevation ? 5 : 0,
+      elevation: elevation,
+      disabledColor: disabledColor,
       hoverColor: const Color(0xff4285F4),
-      color: const Color(0xff4285F4),
-      shape: RoundedRectangleBorder(
-        borderRadius: widget.borderRadius,
-      ),
+      color: color,
+      shape: shape ??
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.sp),
+          ),
       child: Text(
-        widget.textMaterialButton,
+        title,
         style: TextStyle(
-          color: const Color(0xffFFFFFF),
-          fontSize: widget.fontSize,
-          fontWeight: widget.fontWeight,
+          color: fontColor,
+          fontSize: 16.sp,
+          fontFamily: 'Gravity',
+          fontWeight: fontWeight,
+        ).copyWith(
+          fontSize: fontSize,
         ),
       ),
     );
