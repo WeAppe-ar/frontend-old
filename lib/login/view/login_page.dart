@@ -74,12 +74,9 @@ class _ViewLoginState extends State<ViewLogin> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                WeappearMaterialButton.outlined(
-                                  onPressed: () {},
-                                  height: 40.sp,
-                                  minWidth: 285.sp,
-                                  title: 'INICIA SESION',
-                                )
+                                WeappearCheckbox(
+                                  onChanged: (checked) {},
+                                ),
                               ],
                             ),
                           ),
