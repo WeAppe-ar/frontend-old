@@ -47,7 +47,7 @@ class _ViewLoginState extends State<ViewLogin> {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: Scaffold(
-            backgroundColor: const Color(0xffF5F5F5),
+            backgroundColor: Color.fromARGB(255, 58, 55, 55),
             appBar: AppBar(
               title: const Text(
                 'Login',
@@ -72,9 +72,11 @@ class _ViewLoginState extends State<ViewLogin> {
                           child: AutofillGroup(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                WeappearCheckbox(
-                                  onChanged: (checked) {},
+                              children: const [
+                                WeappearAlertDialog(
+                                  title: '¡TIEMPO AGOTADO!',
+                                  content:
+                                      'Ha finalizado el tiempo predeterminado de este código, por favor, genera uno nuevo para que podamos validar tu sesión.',
                                 ),
                               ],
                             ),
