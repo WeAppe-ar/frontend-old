@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -9,14 +8,14 @@ import 'package:intl/intl.dart' as intl;
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 
-/// Callers can lookup localized strings with an instance of AppLocalizations returned
-/// by `AppLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of AppLocalizations
+/// returned by `AppLocalizations.of(context)`.
 ///
 /// Applications need to include `AppLocalizations.delegate()` in their app's
-/// localizationDelegates list, and the locales they support in the app's
-/// supportedLocales list. For example:
+/// `localizationDelegates` list, and the locales they support in the app's
+/// `supportedLocales` list. For example:
 ///
-/// ```
+/// ```dart
 /// import 'arb/app_localizations.dart';
 ///
 /// return MaterialApp(
@@ -31,14 +30,14 @@ import 'app_localizations_es.dart';
 /// Please make sure to update your pubspec.yaml to include the following
 /// packages:
 ///
-/// ```
+/// ```yaml
 /// dependencies:
 ///   # Internationalization support.
 ///   flutter_localizations:
 ///     sdk: flutter
 ///   intl: any # Use the pinned version from flutter_localizations
 ///
-///   # rest of dependencies
+///   # Rest of dependencies
 /// ```
 ///
 /// ## iOS Applications
@@ -105,6 +104,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Log in to your account'**
   String get loginTitle;
+
+  /// No description provided for @invalidCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid code!'**
+  String get invalidCode;
+
+  /// No description provided for @invalidCodeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The code is invalid, please try again so we can validate your session.'**
+  String get invalidCodeSubtitle;
+
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// No description provided for @timeOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Time out!'**
+  String get timeOut;
+
+  /// No description provided for @timeOutSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The default time of this code has expired, please generate a new one so that we can validate your session.'**
+  String get timeOutSubtitle;
+
+  /// No description provided for @signOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign off'**
+  String get signOff;
+
+  /// No description provided for @signOffSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get signOffSubtitle;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

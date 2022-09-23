@@ -18,6 +18,8 @@ dependencies:
   matcher: ^0.12.11
   rive: ^0.8.1
   shimmer: ^2.0.0
+  weappear_localizations:
+    path: ../weappear_localizations
 
 dev_dependencies:
   very_good_analysis: ^3.0.1

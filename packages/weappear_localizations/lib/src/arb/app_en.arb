@@ -4,5 +4,13 @@
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
     },
-    "loginTitle": "Log in to your account"
+    "loginTitle": "Log in to your account",
+    "invalidCode": "Invalid code!",
+    "invalidCodeSubtitle": "The code is invalid, please try again so we can validate your session.",
+    "accept": "Accept",
+    "timeOut": "Time out!",
+    "timeOutSubtitle": "The default time of this code has expired, please generate a new one so that we can validate your session.",
+    "signOff": "Sign off",
+    "signOffSubtitle": "Are you sure you want to log out?",
+    "cancel": "Cancel"
 }

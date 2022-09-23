@@ -3,6 +3,7 @@ import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weappear/login/bloc/login_bloc.dart';
+import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
 class PageLogin extends StatelessWidget {
@@ -67,20 +68,11 @@ class _ViewLoginState extends State<ViewLogin> {
                         horizontal: constraints.maxWidth * 0.1,
                       ),
                       child: Center(
-                        child: Form(
-                          key: _formKey,
-                          child: AutofillGroup(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                WeappearAlert(
-                                  title: '¡TIEMPO AGOTADO!',
-                                  content:
-                                      'Ha finalizado el tiempo predeterminado de este código, por favor, genera uno nuevo para que podamos validar tu sesión.',
-                                ),
-                              ],
-                            ),
-                          ),
+                        child: FloatingActionButton(
+                          onPressed: () => WeappearDialog(
+                            title: context.l10n.invalidCode.toUpperCase(),
+                            description: context.l10n.invalidCodeSubtitle,
+                          ).show(context),
                         ),
                       ),
                     ),

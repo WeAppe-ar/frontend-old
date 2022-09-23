@@ -40,7 +40,7 @@ do
   packageName=${packageName//\/pubspec.yaml/}
   tryPubGet $packageName
 done
-tryPubGet "hoops"
+tryPubGet "App"
 
 wait
 
