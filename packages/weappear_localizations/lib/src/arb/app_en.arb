@@ -12,5 +12,7 @@
     "timeOutSubtitle": "The default time of this code has expired, please generate a new one so that we can validate your session.",
     "signOff": "Sign off",
     "signOffSubtitle": "Are you sure you want to log out?",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "youHaveToCompleteThisField": "You have to complete this field",
+    "invalidMail":"Invalid mail"
 }

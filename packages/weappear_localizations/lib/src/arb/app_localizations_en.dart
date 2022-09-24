@@ -1,3 +1,6 @@
+
+
+
 import 'app_localizations.dart';
 
 /// The translations for English (`en`).
@@ -33,4 +36,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get youHaveToCompleteThisField => 'You have to complete this field';
+
+  @override
+  String get invalidMail => 'Invalid mail';
 }

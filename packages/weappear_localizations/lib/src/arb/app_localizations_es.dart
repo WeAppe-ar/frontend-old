@@ -1,3 +1,6 @@
+
+
+
 import 'app_localizations.dart';
 
 /// The translations for Spanish Castilian (`es`).
@@ -33,4 +36,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get cancel => 'Cancelar';
+
+  @override
+  String get youHaveToCompleteThisField => 'tienes que completar este campo';
+
+  @override
+  String get invalidMail => 'Mail invalido';
 }

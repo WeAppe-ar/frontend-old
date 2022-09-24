@@ -12,5 +12,7 @@
     "timeOutSubtitle": "Ha finalizado el tiempo predeterminado de este código, por favor, genera uno nuevo para que podamos validar tu sesión.",
     "signOff": "Cerrar sesión",
     "signOffSubtitle": "¿Estás seguro que quieres cerrar sesión?",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "youHaveToCompleteThisField": "tienes que completar este campo",
+    "invalidMail":"Mail invalido"
 }
