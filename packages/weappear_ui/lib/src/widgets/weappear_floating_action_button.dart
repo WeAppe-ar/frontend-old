@@ -19,10 +19,12 @@ class WeappearFloatingActionButton extends StatefulWidget {
   final String? heroTag;
 
   @override
-  State<WeappearFloatingActionButton> createState() => _WeappearFloatingActionButtonState();
+  State<WeappearFloatingActionButton> createState() =>
+      _WeappearFloatingActionButtonState();
 }
 
-class _WeappearFloatingActionButtonState extends State<WeappearFloatingActionButton> {
+class _WeappearFloatingActionButtonState
+    extends State<WeappearFloatingActionButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(

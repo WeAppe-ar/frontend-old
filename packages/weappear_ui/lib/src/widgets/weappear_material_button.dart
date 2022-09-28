@@ -39,7 +39,8 @@ class WeappearMaterialButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.sp),
         side: BorderSide(
-          color: isActive ? WeappearColors.blueActivated : const Color(0xffA1C3FB),
+          color:
+              isActive ? WeappearColors.blueActivated : const Color(0xffA1C3FB),
           width: 1.sp,
         ),
       ),
@@ -53,7 +54,8 @@ class WeappearMaterialButton extends StatelessWidget {
       title: title,
       fontSize: fontSize,
       fontWeight: fontWeight,
-      fontColor: isActive ? WeappearColors.blueActivated : const Color(0xffA1C3FB),
+      fontColor:
+          isActive ? WeappearColors.blueActivated : const Color(0xffA1C3FB),
       useHighlightElevation: false,
     );
   }

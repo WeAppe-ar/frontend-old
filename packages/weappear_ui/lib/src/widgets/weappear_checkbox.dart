@@ -51,10 +51,13 @@ class _WeappearCheckboxState extends State<WeappearCheckbox> {
                 duration: const Duration(milliseconds: 150),
                 curve: Curves.easeInOut,
                 decoration: BoxDecoration(
-                  color: _checked ? const Color(0xff4285F4) : Colors.transparent,
+                  color:
+                      _checked ? const Color(0xff4285F4) : Colors.transparent,
                   borderRadius: BorderRadius.circular(_size * 0.15),
                   border: Border.all(
-                    color: _checked ? const Color(0xff4285F4) : const Color(0xff9F9F9F),
+                    color: _checked
+                        ? const Color(0xff4285F4)
+                        : const Color(0xff9F9F9F),
                     width: 1.5.sp,
                   ),
                 ),

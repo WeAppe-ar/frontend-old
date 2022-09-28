@@ -110,7 +110,9 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
                       });
                     },
                     child: Icon(
-                      obscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                      obscure
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
                       size: 22.sp,
                       color: const Color(0xff898989),
                     ),
