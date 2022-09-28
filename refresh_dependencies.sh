@@ -29,6 +29,7 @@ pubGet(){
   cd ../../
 }
 
+find . -name "pubspec.lock" | xargs rm
 start=`date +%s`
 echo "Getting packages..."
 for package in ./packages/**/pubspec.yaml
@@ -38,8 +39,8 @@ do
   packageName=${package//.\/packages\//}
   packageName=${packageName//\/pubspec.yaml/}
   tryPubGet $packageName
-done &
-tryPubGet "hoops"
+done
+tryPubGet "App"
 
 wait
 
