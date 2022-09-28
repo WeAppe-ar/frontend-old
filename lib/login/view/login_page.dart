@@ -3,6 +3,7 @@ import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weappear/login/bloc/login_bloc.dart';
+import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
 class PageLogin extends StatelessWidget {
@@ -47,7 +48,7 @@ class _ViewLoginState extends State<ViewLogin> {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: Scaffold(
-            backgroundColor: const Color(0xffF5F5F5),
+            backgroundColor: Colors.white,
             appBar: AppBar(
               title: const Text(
                 'Login',
@@ -67,18 +68,11 @@ class _ViewLoginState extends State<ViewLogin> {
                         horizontal: constraints.maxWidth * 0.1,
                       ),
                       child: Center(
-                        child: Form(
-                          key: _formKey,
-                          child: AutofillGroup(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                WeappearCheckbox(
-                                  onChanged: (checked) {},
-                                ),
-                              ],
-                            ),
-                          ),
+                        child: FloatingActionButton(
+                          onPressed: () => WeappearDialog(
+                            title: context.l10n.invalidCode.toUpperCase(),
+                            description: context.l10n.invalidCodeSubtitle,
+                          ).show(context),
                         ),
                       ),
                     ),

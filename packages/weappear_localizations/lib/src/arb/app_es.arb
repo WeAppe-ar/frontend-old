@@ -4,5 +4,15 @@
     "@counterAppBarTitle": {
         "description": "Texto mostrado en la AppBar de la página del contador"
     },
-    "loginTitle": "Entra a tu cuenta"
+    "loginTitle": "Entra a tu cuenta",
+    "invalidCode": "Código inválido",
+    "invalidCodeSubtitle": "El código no es válido, por favor, intentalo nuevamente para que podamos validar tu sesión.",
+    "accept": "Aceptar",
+    "timeOut": "¡Tiempo agotado!",
+    "timeOutSubtitle": "Ha finalizado el tiempo predeterminado de este código, por favor, genera uno nuevo para que podamos validar tu sesión.",
+    "signOff": "Cerrar sesión",
+    "signOffSubtitle": "¿Estás seguro que quieres cerrar sesión?",
+    "cancel": "Cancelar",
+    "youHaveToCompleteThisField": "tienes que completar este campo",
+    "invalidMail":"Mail invalido"
 }

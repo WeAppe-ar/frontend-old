@@ -107,6 +107,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Log in to your account'**
   String get loginTitle;
+
+  /// No description provided for @invalidCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid code!'**
+  String get invalidCode;
+
+  /// No description provided for @invalidCodeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The code is invalid, please try again so we can validate your session.'**
+  String get invalidCodeSubtitle;
+
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// No description provided for @timeOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Time out!'**
+  String get timeOut;
+
+  /// No description provided for @timeOutSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The default time of this code has expired, please generate a new one so that we can validate your session.'**
+  String get timeOutSubtitle;
+
+  /// No description provided for @signOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign off'**
+  String get signOff;
+
+  /// No description provided for @signOffSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get signOffSubtitle;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @youHaveToCompleteThisField.
+  ///
+  /// In en, this message translates to:
+  /// **'You have to complete this field'**
+  String get youHaveToCompleteThisField;
+
+  /// No description provided for @invalidMail.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid mail'**
+  String get invalidMail;
 }
 
 class _AppLocalizationsDelegate
