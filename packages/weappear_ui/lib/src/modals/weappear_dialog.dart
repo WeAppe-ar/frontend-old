@@ -1,12 +1,14 @@
-// ignore_for_file: public_member_api_docs
-
 import 'package:appsize/appsize.dart';
 import 'package:flutter/material.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/src/buttons/weappear_material_button.dart';
 import 'package:weappear_ui/src/common/common.dart';
 
+/// {@template weappear_dialog}
+/// The dialog used in WeAppear.
+/// {@endtemplate}
 class WeappearDialog extends StatelessWidget {
+  /// {@macro weappear_dialog}
   const WeappearDialog({
     super.key,
     required this.title,
@@ -17,16 +19,22 @@ class WeappearDialog extends StatelessWidget {
     this.onCancel,
   });
 
+  /// The title of the dialog.
   final String title;
 
+  /// The description of the dialog.
   final String description;
 
+  /// The text of the accept button.
   final String? acceptText;
 
+  /// The callback of the accept button.
   final void Function()? onAccept;
 
+  /// The text of the cancel button.
   final String? cancelText;
 
+  /// The callback of the cancel button.
   final void Function()? onCancel;
 
   @override
