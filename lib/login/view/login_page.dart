@@ -1,10 +1,10 @@
-import 'package:appsize/appsize.dart';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weappear/login/bloc/login_bloc.dart';
+import 'package:weappear_localizations/weappear_localizations.dart';
+import 'package:weappear_ui/weappear_ui.dart';
 
 class PageLogin extends StatelessWidget {
   const PageLogin({super.key});
@@ -46,124 +46,38 @@ class _ViewLoginState extends State<ViewLogin> {
       },
       builder: (context, state) {
         return GestureDetector(
-          onTap: FocusScope.of(context).unfocus,
+          onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: Scaffold(
-            body: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 32.sp,
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              title: const Text(
+                'Login',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: Form(
-                  key: _formKey,
-                  child: AutofillGroup(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 24.h,
+              ),
+            ),
+            body: Center(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    physics: const ClampingScrollPhysics(),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: constraints.maxWidth * 0.1,
+                      ),
+                      child: Center(
+                        child: FloatingActionButton(
+                          onPressed: () => WeappearDialog(
+                            title: context.l10n.invalidCode.toUpperCase(),
+                            description: context.l10n.invalidCodeSubtitle,
+                          ).show(context),
                         ),
-                        SvgPicture.asset(
-                          'assets/icons/weappear_logo.svg',
-                          width: 100.sp,
-                        ),
-                        SizedBox(
-                          height: 40.sp,
-                        ),
-                        Text(
-                          'INICIAR SESIÓN',
-                          style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w500,
-                            color: const Color(0xff303030),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 90.sp,
-                        ),
-                        TextFormField(
-                          autovalidateMode: AutovalidateMode.always,
-                          controller: _emailController,
-                          autocorrect: false,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecorations.authInputDecoration(hintext: 'Email'),
-                        ),
-                        SizedBox(
-                          height: 32.sp,
-                        ),
-                        TextFormField(
-                          autovalidateMode: AutovalidateMode.always,
-                          controller: _passwordController,
-                          autocorrect: false,
-                          obscureText: true,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecorations.authInputDecoration(
-                            hintext: 'Contraseña',
-                            suffixIcon: Icons.visibility_off,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 7.sp,
-                        ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            '¿Olvidaste tu contraseña?',
-                            style: TextStyle(
-                              color: const Color(0xff4285F4),
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 50.sp,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 50.sp,
-                          child: ElevatedButton(
-                            onPressed: submit,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xff4285F4),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.sp),
-                              ),
-                            ),
-                            child: Text(
-                              'INICIAR SESIÓN',
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 36.sp,
-                        ),
-                        Text(
-                          '¿No tienes cuenta?',
-                          style: TextStyle(
-                            color: const Color(0xffC9C8C8),
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'REGISTRATE',
-                            style: TextStyle(
-                              color: const Color(0xff4285F4),
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
           ),
@@ -180,26 +94,5 @@ class _ViewLoginState extends State<ViewLogin> {
             _passwordController.text,
           );
     }
-  }
-}
-
-class InputDecorations {
-  static InputDecoration authInputDecoration({
-    required String hintext,
-    IconData? suffixIcon,
-  }) {
-    return InputDecoration(
-      focusedBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: Color(0xff4285F4),
-        ),
-      ),
-      hintText: hintext,
-      suffixIcon: suffixIcon != null
-          ? Icon(
-              suffixIcon,
-            )
-          : null,
-    );
   }
 }
