@@ -1,3 +1,6 @@
+
+
+
 import 'app_localizations.dart';
 
 /// The translations for Spanish Castilian (`es`).
@@ -39,4 +42,22 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get invalidMail => 'Mail invalido';
+
+  @override
+  String get signIn => 'Iniciar Sesión';
+
+  @override
+  String get password => 'Constraseña';
+
+  @override
+  String get forgotYourPassword => '¿Olvidaste tu constraseña?';
+
+  @override
+  String get register => 'Regístrate';
+
+  @override
+  String get dontHaveAnAccount => '¿No tienes cuenta?';
+
+  @override
+  String get email => 'Correo Electrónico';
 }

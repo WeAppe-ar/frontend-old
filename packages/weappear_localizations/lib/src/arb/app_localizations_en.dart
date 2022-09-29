@@ -1,3 +1,6 @@
+
+
+
 import 'app_localizations.dart';
 
 /// The translations for English (`en`).
@@ -39,4 +42,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get invalidMail => 'Invalid mail';
+
+  @override
+  String get signIn => 'Sign In';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get forgotYourPassword => 'Forgot your password?';
+
+  @override
+  String get register => 'Register';
+
+  @override
+  String get dontHaveAnAccount => 'Don\'t have an account?';
+
+  @override
+  String get email => 'Email';
 }
