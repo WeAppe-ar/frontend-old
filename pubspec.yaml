@@ -13,6 +13,7 @@ dependencies:
   bloc: ^8.0.3
   data_persistence:
     path: packages/data_persistence
+  dots_indicator: ^2.1.0
   equatable: ^2.0.3
   flutter:
     sdk: flutter

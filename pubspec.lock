@@ -163,7 +163,7 @@ packages:
     source: hosted
     version: "0.4.1"
   dots_indicator:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dots_indicator
       url: "https://pub.dartlang.org"
