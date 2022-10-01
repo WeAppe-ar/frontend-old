@@ -12,9 +12,11 @@ class PageOnboarding extends StatefulWidget {
 }
 
 class _PageOnboardingState extends State<PageOnboarding> {
-  final PageController _pageController = PageController();
   int index = 0;
-  final Map<int, String> map = {
+
+  final PageController _pageController = PageController();
+
+  final map = <int, String>{
     0: '¡Contabilizá tus horas trabajadas en proyectos individuales o grupales!',
     1: '¡Crea un proyecto e invitá a otros a participar!',
     2: 'Unite a un proyecto ya armado y conectate con los participantes',
@@ -37,50 +39,8 @@ class _PageOnboardingState extends State<PageOnboarding> {
         children: [
           PageView(
             controller: _pageController,
-            children: [
-              Column(
-                children: [
-                  SizedBox(
-                    height: 130.sp,
-                  ),
-                  SizedBox(
-                    height: 294.sp,
-                    width: 337.sp,
-                    child: SvgPicture.asset(
-                      'assets/images/onboarding_1.svg',
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 130.sp,
-                  ),
-                  SizedBox(
-                    height: 295.sp,
-                    width: 352.sp,
-                    child: SvgPicture.asset(
-                      'assets/images/onboarding_2.svg',
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 130.sp,
-                  ),
-                  SizedBox(
-                    height: 298.sp,
-                    width: 338.sp,
-                    child: SvgPicture.asset(
-                      'assets/images/onboarding_3.svg',
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            children:
+                Iterable<int>.generate(3).map(OnboardingImage.new).toList(),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 68.sp, horizontal: 38.sp),
@@ -149,6 +109,28 @@ class _PageOnboardingState extends State<PageOnboarding> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class OnboardingImage extends StatelessWidget {
+  const OnboardingImage(
+    this.index, {
+    super.key,
+  });
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.topCenter,
+      padding: EdgeInsets.only(top: 130.sp),
+      height: 298.sp,
+      width: 338.sp,
+      child: SvgPicture.asset(
+        'assets/images/onboarding_$index.svg',
       ),
     );
   }
