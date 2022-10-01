@@ -3,6 +3,8 @@ import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weappear/login/bloc/login_bloc.dart';
+import 'package:weappear_localizations/weappear_localizations.dart';
+import 'package:weappear_ui/weappear_ui.dart';
 
 class PageLogin extends StatelessWidget {
   const PageLogin({super.key});
@@ -46,6 +48,7 @@ class _ViewLoginState extends State<ViewLogin> {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               title: const Text(
                 'Login',
@@ -65,60 +68,11 @@ class _ViewLoginState extends State<ViewLogin> {
                         horizontal: constraints.maxWidth * 0.1,
                       ),
                       child: Center(
-                        child: Form(
-                          key: _formKey,
-                          child: AutofillGroup(
-                            child: Card(
-                              elevation: 4,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: constraints.maxHeight * 0.02,
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      'INICIAR SESION',
-                                      style: TextStyle(
-                                        fontSize: constraints.maxWidth * 0.08,
-                                        fontWeight: FontWeight.w400,
-                                        color: const Color(0xff303030),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: constraints.maxHeight * 0.02,
-                                  ),
-                                  TextFormField(
-                                    autovalidateMode: AutovalidateMode.always,
-                                    controller: _emailController,
-                                  ),
-                                  TextFormField(
-                                    autovalidateMode: AutovalidateMode.always,
-                                    controller: _passwordController,
-                                  ),
-                                  SizedBox(
-                                    height: constraints.maxHeight *
-                                        (state is BlocStateLoginFailed
-                                            ? 0.01
-                                            : 0.05),
-                                  ),
-                                  if (state is BlocStateLoginFailed)
-                                    Text(
-                                      state.error.toString(),
-                                    ),
-                                  ElevatedButton(
-                                    onPressed: submit,
-                                    child: const Text('Login'),
-                                  ),
-                                  SizedBox(
-                                    height: constraints.maxHeight * 0.05,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                        child: FloatingActionButton(
+                          onPressed: () => WeappearDialog(
+                            title: context.l10n.invalidCode.toUpperCase(),
+                            description: context.l10n.invalidCodeSubtitle,
+                          ).show(context),
                         ),
                       ),
                     ),
