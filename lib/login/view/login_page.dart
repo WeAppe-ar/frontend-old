@@ -77,13 +77,13 @@ class _ViewLoginState extends State<ViewLogin> {
                         ),
                         SizedBox(height: 92.sp),
                         WeappearTextFormField(
-                          handlePassword: true,
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           hintText: context.l10n.email,
                         ),
                         SizedBox(height: 32.sp),
                         WeappearTextFormField(
+                          handlePassword: true,
                           controller: _passwordController,
                           keyboardType: TextInputType.emailAddress,
                           hintText: context.l10n.password,

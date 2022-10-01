@@ -7,14 +7,13 @@ import 'package:weappear_ui/src/common/common.dart';
 /// {@endtemplate}
 class WeappearTextFormField extends StatefulWidget {
   /// {@macro weappear_text_field}
-  WeappearTextFormField({
+  const WeappearTextFormField({
     super.key,
     this.handlePassword = false,
     this.hintText,
     this.keyboardType,
     this.validator,
     this.controller,
-    this.obscure = false,
   });
 
   /// Whether the text field will manage sensitive information.
@@ -32,18 +31,17 @@ class WeappearTextFormField extends StatefulWidget {
   /// The controller of the text field.
   final TextEditingController? controller;
 
-  ///
-  bool obscure;
-
   @override
   State<WeappearTextFormField> createState() => _WeappearTextFormFieldState();
 }
 
 class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
+  bool _obscureText = false;
+
   @override
   void initState() {
     super.initState();
-    widget.obscure = widget.handlePassword;
+    _obscureText = widget.handlePassword;
   }
 
   @override
@@ -55,7 +53,7 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
         autovalidateMode: AutovalidateMode.disabled,
         autocorrect: false,
         keyboardType: widget.keyboardType,
-        obscureText: widget.obscure,
+        obscureText: _obscureText,
         validator: widget.validator,
         style: TextStyle(
           fontSize: 14.sp,
@@ -102,17 +100,17 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
             maxHeight: 22.sp,
             maxWidth: 30.sp,
           ),
-          suffixIcon: !widget.handlePassword
+          suffixIcon: widget.handlePassword
               ? Padding(
                   padding: EdgeInsets.only(right: 8.sp),
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        widget.obscure = !widget.obscure;
+                        _obscureText = !_obscureText;
                       });
                     },
                     child: Icon(
-                      widget.obscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                      _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
                       size: 22.sp,
                       color: const Color(0xff898989),
                     ),
