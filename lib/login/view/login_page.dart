@@ -50,27 +50,23 @@ class _ViewLoginState extends State<ViewLogin> {
         return GestureDetector(
           onTap: FocusScope.of(context).unfocus,
           child: Scaffold(
-            body: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 34.sp,
-                ),
-                child: Form(
-                  key: _formKey,
-                  child: AutofillGroup(
+            body: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 34.sp,
+              ),
+              child: Form(
+                key: _formKey,
+                child: AutofillGroup(
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: 24.h,
-                        ),
+                        SizedBox(height: 170.sp),
                         SvgPicture.asset(
                           'assets/icons/weappear_logo.svg',
                           width: 100.sp,
                         ),
-                        SizedBox(
-                          height: 40.sp,
-                        ),
+                        SizedBox(height: 40.sp),
                         Text(
                           context.l10n.signIn.toUpperCase(),
                           style: TextStyle(
@@ -79,27 +75,24 @@ class _ViewLoginState extends State<ViewLogin> {
                             color: const Color(0xff303030),
                           ),
                         ),
-                        SizedBox(
-                          height: 92.sp,
-                        ),
+                        SizedBox(height: 92.sp),
                         WeappearTextFormField(
                           handlePassword: true,
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           hintText: context.l10n.email,
                         ),
-                        SizedBox(
-                          height: 32.sp,
-                        ),
+                        SizedBox(height: 32.sp),
                         WeappearTextFormField(
                           controller: _passwordController,
                           keyboardType: TextInputType.emailAddress,
                           hintText: context.l10n.password,
                         ),
+                        SizedBox(height: 7.sp),
                         Align(
                           alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () {},
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
                             child: Text(
                               context.l10n.forgotYourPassword,
                               style: TextStyle(
@@ -133,8 +126,8 @@ class _ViewLoginState extends State<ViewLogin> {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        TextButton(
-                          onPressed: () {},
+                        GestureDetector(
+                          behavior: HitTestBehavior.opaque,
                           child: Text(
                             context.l10n.register.toUpperCase(),
                             style: TextStyle(
