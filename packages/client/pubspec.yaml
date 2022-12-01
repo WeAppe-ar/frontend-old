@@ -1,0 +1,21 @@
+name: client
+description: A Very Good Project created by Very Good CLI.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  http_handler:
+    path: ../http_handler
+  weappear_backend:
+    git:
+      url: git@github.com:tomassasovsky/WeAppe.ar.git
+      ref: chore/migrate-to-shelf
+
+
+dev_dependencies:
+  mocktail: ^0.3.0
+  test: ^1.19.2
+  very_good_analysis: ^3.1.0

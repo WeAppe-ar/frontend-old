@@ -21,8 +21,7 @@ class HttpRequestFailure implements Exception {
   final String error;
 
   @override
-  String toString() =>
-      'HttpRequestFailure(statusCode: $statusCode, error: $error)';
+  String toString() => 'HttpRequestFailure(statusCode: $statusCode, error: $error)';
 }
 
 /// A class that contains the error gotten from the backend methods.
@@ -48,8 +47,7 @@ class ExceptionResponse with EquatableMixin implements Exception {
   final String? message;
 
   @override
-  String toString() =>
-      'ExceptionResponse(statusCode: $statusCode, message: $message)';
+  String toString() => 'ExceptionResponse(statusCode: $statusCode, message: $message)';
 
   @override
   List<Object?> get props => [statusCode, message];
@@ -102,7 +100,7 @@ class HttpHandler extends Equatable {
     try {
       response = await _httpClient.post(
         uri,
-        body: body,
+        body: (body != null) ? jsonEncode(body) : null,
         headers: {
           if (_token != null) 'Authorization': 'Bearer $_token',
         },

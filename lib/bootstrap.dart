@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 
+/// Taps on the Blocs to log the events and states.
 class AppBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
@@ -18,6 +19,7 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
+/// Wraps the [builder] with the [AppBlocObserver].
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
@@ -26,7 +28,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await runZonedGuarded(
     () async {
       Bloc.observer = AppBlocObserver();
-
       runApp(await builder());
     },
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
