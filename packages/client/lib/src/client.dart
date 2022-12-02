@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:client/models/models.dart';
 import 'package:http_handler/http_handler.dart';
+import 'package:weappear_backend/weappear.dart';
 
 /// {@template client}
 /// The client in which we make all the requests to the server.
@@ -44,6 +45,38 @@ class Client {
     }
     try {
       return LoginResponse.fromMap(response);
+    } catch (e) {
+      log('Error while parsing the response: ${e.toString()}');
+      return null;
+    }
+  }
+
+  /// This method is used to register into the app.
+  Future<User?> register({
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+  }) async {
+    final uri = Uri.http(authority, '/users/register');
+    Map<String, dynamic> response;
+
+    try {
+      response = await http.httpPost<JSON>(
+        uri,
+        body: <String, dynamic>{
+          'firstName': firstName,
+          'lastName': lastName,
+          'email': email,
+          'password': password,
+        },
+      );
+    } catch (e) {
+      log('Error while making the request: ${e.toString()}');
+      return null;
+    }
+    try {
+      return User.fromJson(response);
     } catch (e) {
       log('Error while parsing the response: ${e.toString()}');
       return null;
