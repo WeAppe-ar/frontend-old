@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
-import 'package:http_handler/http_handler.dart';
 
 /// Thrown if an exception occurs while making an http request.
 class HttpException implements Exception {}
@@ -72,7 +71,10 @@ class HttpHandler extends Equatable {
   final _httpClient = http.Client();
 
   /// This method is used to make a GET request.
-  Future<T> httpGet<T>(Uri uri) async {
+  Future<T?> httpGet<T>(
+    Uri uri, {
+    required T Function(Map<String, dynamic>) parser,
+  }) async {
     http.Response response;
 
     try {
@@ -83,17 +85,18 @@ class HttpHandler extends Equatable {
         },
       );
     } catch (_) {
-      throw HttpException();
+      return null;
     }
 
-    return _handleResponse<T>(response);
+    return _handleResponse<T>(response, parser);
   }
 
   /// This method is used to make a POST request.
-  Future<T> httpPost<T>(
+  Future<T?> httpPost<T>(
     Uri uri, {
     Map<String, dynamic>? body,
     Map<String, String>? queryParams,
+    required T Function(Map<String, dynamic>) parser,
   }) async {
     http.Response response;
 
@@ -106,16 +109,17 @@ class HttpHandler extends Equatable {
         },
       );
     } catch (_) {
-      throw HttpException();
+      return null;
     }
 
-    return _handleResponse<T>(response);
+    return _handleResponse<T>(response, parser);
   }
 
   /// This method is used to make a PUT request.
-  Future<T> httpPut<T>(
+  Future<T?> httpPut<T>(
     Uri uri, {
     Map<String, dynamic>? body,
+    required T Function(Map<String, dynamic>) parser,
   }) async {
     http.Response response;
 
@@ -128,16 +132,17 @@ class HttpHandler extends Equatable {
         },
       );
     } catch (_) {
-      throw HttpException();
+      return null;
     }
 
-    return _handleResponse<T>(response);
+    return _handleResponse<T>(response, parser);
   }
 
   /// This method is used to make a DELETE request.
-  Future<T> httpDelete<T>(
+  Future<T?> httpDelete<T>(
     Uri uri, {
     Map<String, dynamic>? body,
+    required T Function(Map<String, dynamic>) parser,
   }) async {
     http.Response response;
 
@@ -150,40 +155,22 @@ class HttpHandler extends Equatable {
         },
       );
     } catch (_) {
-      throw HttpException();
+      return null;
     }
 
-    return _handleResponse<T>(response);
+    return _handleResponse<T>(response, parser);
   }
 
-  T _handleResponse<T>(http.Response response) {
+  T? _handleResponse<T>(http.Response response, T Function(Map<String, dynamic>) parser) {
     try {
-      if (response is T) return response as T;
-
-      final dynamic decodedResponse = jsonDecode(response.body);
-
-      if (response.isFailure && decodedResponse is Map<String, dynamic>) {
-        if (decodedResponse.containsKey('exception')) {
-          throw ExceptionResponse.fromMap(decodedResponse);
-        }
-        throw HttpRequestFailure(
-          response.statusCode,
-          response.reasonPhrase ?? '',
-        );
+      final decodedResponse = (jsonDecode(response.body) as Map).cast<String, dynamic>();
+      if (response.isFailure) {
+        return null;
       }
 
-      if (decodedResponse is T) return decodedResponse;
-
-      try {
-        if (T is JSON) {
-          (decodedResponse as Map).cast<String, dynamic>() as T;
-        }
-        return decodedResponse as T;
-      } catch (_) {
-        throw SpecifiedTypeNotMatchedException();
-      }
-    } on FormatException {
-      throw JsonDecodeException();
+      return parser(decodedResponse);
+    } catch (_) {
+      return null;
     }
   }
 

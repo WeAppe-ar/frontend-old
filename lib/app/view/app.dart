@@ -1,5 +1,4 @@
 import 'package:appsize/appsize.dart';
-import 'package:auth_repository/auth_repository.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,13 +8,10 @@ import 'package:weappear_ui/weappear_ui.dart';
 
 class App extends StatelessWidget {
   const App({
-    required AuthRepository authRepository,
     required DataPersistenceRepository dataPersistenceRepository,
     super.key,
-  })  : _authRepository = authRepository,
-        _dataPersistenceRepository = dataPersistenceRepository;
+  }) : _dataPersistenceRepository = dataPersistenceRepository;
 
-  final AuthRepository _authRepository;
   final DataPersistenceRepository _dataPersistenceRepository;
 
   @override
@@ -48,8 +44,7 @@ class ViewApp extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       home: Navigator(
-        onPopPage: (Route<dynamic> route, dynamic result) =>
-            route.didPop(result),
+        onPopPage: (Route<dynamic> route, dynamic result) => route.didPop(result),
         pages: const [
           MaterialPage<void>(
             child: PageLogin(),

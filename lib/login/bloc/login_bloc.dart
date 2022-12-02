@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:data_persistence/data_persistence.dart';
@@ -11,10 +12,8 @@ part 'login_state.dart';
 
 class BlocLogin extends Bloc<BlocEventLogin, BlocStateLogin> {
   BlocLogin({
-    required AuthRepository authRepository,
     required DataPersistenceRepository dataPersistenceRepository,
-  })  : _authRepository = authRepository,
-        _dataPersistenceRepository = dataPersistenceRepository,
+  })  : _dataPersistenceRepository = dataPersistenceRepository,
         super(BlocStateLoginInitial()) {
     on<BlocEventAttemptLogin>(_tryLogin);
   }
@@ -24,8 +23,7 @@ class BlocLogin extends Bloc<BlocEventLogin, BlocStateLogin> {
     Emitter<BlocStateLogin> emit,
   ) async {
     try {
-      final loginResponse =
-          await _authRepository.login(event.email, event.password);
+      final loginResponse = await _authRepository.login(event.email, event.password);
 
       await _dataPersistenceRepository.setAccessToken(
         loginResponse.accessToken,
@@ -47,7 +45,7 @@ class BlocLogin extends Bloc<BlocEventLogin, BlocStateLogin> {
     }
   }
 
-  final AuthRepository _authRepository;
+  final Client _authRepository;
   final DataPersistenceRepository _dataPersistenceRepository;
 
   void tryLogin(String email, String password) => add(

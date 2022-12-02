@@ -3,16 +3,15 @@ import 'package:client/client.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  final client = Client(authority: 'localhost:8080');
+  final client = Client(
+    authority: 'localhost:8080',
+    token:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg4Mjg3ZGJkMjYwMGJjMDE5YTUxM2MiLCJyZWZyZXNoVG9rZW5JZCI6IjYzODhiYjQzM2M2YTQ3ZWU3NmVjOGU1YSIsImlhdCI6MTY2OTkwNTIxOSwiZXhwIjoxNjcwNTEwMDE5LCJpc3MiOiJodHRwczovL3dlYXBwZS5hciJ9.ow-Vf0rYHBaXInORQLWFGl3UtaSt_j-hfjFg4-nmK5w',
+  );
   // final login = await client.login(
   //   email: 'cavazzonnazareno@gmail.com',
   //   password: 'Prueba123!',
   // );
-  final register = await client.register(
-    firstName: 'Nicolás',
-    lastName: 'Cieri',
-    email: 'nicocieri16@gmail.com',
-    password: 'Prueba1!',
-  );
-  print(register);
+  final records = await client.getRecords('63882a45c60b7f303b8b365b');
+  print(records);
 }
