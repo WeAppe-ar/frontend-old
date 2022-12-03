@@ -1,7 +1,9 @@
+import 'package:appsize/appsize.dart';
 import 'package:auth_repository/auth_repository.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weappear/login/bloc/login_bloc.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
@@ -46,38 +48,99 @@ class _ViewLoginState extends State<ViewLogin> {
       },
       builder: (context, state) {
         return GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+          onTap: FocusScope.of(context).unfocus,
           child: Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              title: const Text(
-                'Login',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+            body: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 34.sp,
               ),
-            ),
-            body: Center(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  return SingleChildScrollView(
-                    physics: const ClampingScrollPhysics(),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: constraints.maxWidth * 0.1,
-                      ),
-                      child: Center(
-                        child: FloatingActionButton(
-                          onPressed: () => WeappearDialog(
-                            title: context.l10n.invalidCode.toUpperCase(),
-                            description: context.l10n.invalidCodeSubtitle,
-                          ).show(context),
+              child: Form(
+                key: _formKey,
+                child: AutofillGroup(
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 170.sp),
+                        SvgPicture.asset(
+                          'assets/icons/weappear_logo.svg',
+                          width: 100.sp,
                         ),
-                      ),
+                        SizedBox(height: 40.sp),
+                        Text(
+                          context.l10n.signIn.toUpperCase(),
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w700,
+                            color: const Color(0xff303030),
+                          ),
+                        ),
+                        SizedBox(height: 92.sp),
+                        WeappearTextFormField(
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          hintText: context.l10n.email,
+                        ),
+                        SizedBox(height: 32.sp),
+                        WeappearTextFormField(
+                          handlePassword: true,
+                          controller: _passwordController,
+                          keyboardType: TextInputType.emailAddress,
+                          hintText: context.l10n.password,
+                        ),
+                        SizedBox(height: 7.sp),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            child: Text(
+                              context.l10n.forgotYourPassword,
+                              style: TextStyle(
+                                color: const Color(0xff4285F4),
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 77.sp,
+                        ),
+                        WeappearMaterialButton(
+                          onPressed: () {},
+                          height: 54.sp,
+                          minWidth: 285.sp,
+                          title: context.l10n.signIn.toUpperCase(),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.sp),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 36.sp,
+                        ),
+                        Text(
+                          context.l10n.dontHaveAnAccount,
+                          style: TextStyle(
+                            color: const Color(0xffC9C8C8),
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          child: Text(
+                            context.l10n.register.toUpperCase(),
+                            style: TextStyle(
+                              color: const Color(0xff4285F4),
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  );
-                },
+                  ),
+                ),
               ),
             ),
           ),
@@ -94,5 +157,26 @@ class _ViewLoginState extends State<ViewLogin> {
             _passwordController.text,
           );
     }
+  }
+}
+
+class InputDecorations {
+  static InputDecoration authInputDecoration({
+    required String hintext,
+    IconData? suffixIcon,
+  }) {
+    return InputDecoration(
+      focusedBorder: const UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: Color(0xff4285F4),
+        ),
+      ),
+      hintText: hintext,
+      suffixIcon: suffixIcon != null
+          ? Icon(
+              suffixIcon,
+            )
+          : null,
+    );
   }
 }

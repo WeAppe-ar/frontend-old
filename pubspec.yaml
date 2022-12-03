@@ -19,6 +19,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  flutter_svg: ^1.1.5
   http_handler:
     path: packages/http_handler
   weappear_localizations:
