@@ -1,15 +1,21 @@
+import 'dart:async';
+
 import 'package:appsize/appsize.dart';
 import 'package:client/client.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router_flow/go_router_flow.dart';
 import 'package:weappear/login/cubit/login_cubit.dart';
+import 'package:weappear/onboarding/view/onboarding_page.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
 class PageLogin extends StatelessWidget {
   const PageLogin({super.key});
+
+  static String get name => 'login';
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +39,20 @@ class ViewLogin extends StatefulWidget {
 class _ViewLoginState extends State<ViewLogin> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
+  Timer _debounce = Timer(Duration.zero, () {});
+  late final l10n = context.l10n;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state.isSuccess) {
-          // Navigator.of(context).pushReplacementNamed(
-          //   Routes.home,
-          // );
+          context.goNamed(PageOnboarding.name);
+        } else if (state.isFailure) {
+          if (_debounce.isActive) return;
+          WeAppearSnackbar.error(message: l10n.invalidCredentials).show(context);
+          _debounce = Timer(const Duration(seconds: 3), () {});
         }
       },
       builder: (context, state) {
@@ -68,7 +77,7 @@ class _ViewLoginState extends State<ViewLogin> {
                         ),
                         SizedBox(height: 40.sp),
                         Text(
-                          context.l10n.signIn.toUpperCase(),
+                          l10n.signIn.toUpperCase(),
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w700,
@@ -79,14 +88,14 @@ class _ViewLoginState extends State<ViewLogin> {
                         WeappearTextFormField(
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
-                          hintText: context.l10n.email,
+                          hintText: l10n.email,
                         ),
                         SizedBox(height: 32.sp),
                         WeappearTextFormField(
                           handlePassword: true,
                           controller: _passwordController,
                           keyboardType: TextInputType.emailAddress,
-                          hintText: context.l10n.password,
+                          hintText: l10n.password,
                         ),
                         SizedBox(height: 7.sp),
                         Align(
@@ -94,7 +103,7 @@ class _ViewLoginState extends State<ViewLogin> {
                           child: GestureDetector(
                             behavior: HitTestBehavior.opaque,
                             child: Text(
-                              context.l10n.forgotYourPassword,
+                              l10n.forgotYourPassword,
                               style: TextStyle(
                                 color: const Color(0xff4285F4),
                                 fontSize: 12.sp,
@@ -111,7 +120,7 @@ class _ViewLoginState extends State<ViewLogin> {
                           height: 48.sp,
                           minWidth: 285.sp,
                           isLoading: state.isLoading,
-                          title: context.l10n.signIn.toUpperCase(),
+                          title: l10n.signIn.toUpperCase(),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.sp),
                           ),
@@ -120,7 +129,7 @@ class _ViewLoginState extends State<ViewLogin> {
                           height: 36.sp,
                         ),
                         Text(
-                          context.l10n.dontHaveAnAccount,
+                          l10n.dontHaveAnAccount,
                           style: TextStyle(
                             color: const Color(0xffC9C8C8),
                             fontSize: 12.sp,
@@ -130,7 +139,7 @@ class _ViewLoginState extends State<ViewLogin> {
                         GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           child: Text(
-                            context.l10n.register.toUpperCase(),
+                            l10n.register.toUpperCase(),
                             style: TextStyle(
                               color: const Color(0xff4285F4),
                               fontSize: 13.sp,

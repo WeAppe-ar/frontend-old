@@ -20,5 +20,11 @@
     "forgotYourPassword": "¿Olvidaste tu constraseña?",
     "register":"Regístrate",
     "dontHaveAnAccount":"¿No tienes cuenta?",
-    "email":"Correo Electrónico"
+    "email":"Correo Electrónico",
+    "onboarding0": "¡Contabilizá las horas trabajadas en tus proyectos!",
+    "onboarding1": "¡Crea un proyecto e invitá a otros a participar!",
+    "onboarding2": "Unite a un proyecto y empieza a registrar tus horas",
+    "next": "Siguiente",
+    "skip": "Omitir",
+    "invalidCredentials": "Credenciales inválidas"
 }

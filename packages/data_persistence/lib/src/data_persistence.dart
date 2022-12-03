@@ -22,6 +22,21 @@ class DataPersistenceRepository {
     ]);
   }
 
+  /// Get whether the user is logged in.
+  ///
+  /// Returns `false` if the flag cannot be found.
+  bool get isLoggedIn {
+    final token = getRefreshToken;
+    final userId = getUserId;
+    if (token == null || userId == null) return false;
+    return true;
+  }
+
+  /// Get whether the user is logged in or not.
+  Stream<bool> get isLoggedInStream async* {
+    yield* authentication.watch(key: BoxKeys.userId).asyncMap((_) => isLoggedIn);
+  }
+
   /// Get the App Settings box.
   Box<dynamic> get appSettings => Hive.box<dynamic>(appSettingsKey);
 
@@ -29,12 +44,10 @@ class DataPersistenceRepository {
   Box<dynamic> get authentication => Hive.box<dynamic>(authenticationKey);
 
   /// Get the latest saved token.
-  String? get getAccessToken =>
-      authentication.get(BoxKeys.accessToken) as String?;
+  String? get getAccessToken => authentication.get(BoxKeys.accessToken) as String?;
 
   /// Create a new access token after it's expired.
-  String? get getRefreshToken =>
-      authentication.get(BoxKeys.refreshToken) as String?;
+  String? get getRefreshToken => authentication.get(BoxKeys.refreshToken) as String?;
 
   /// Get the user First Name.
   String? get getFirstName => authentication.get(BoxKeys.firstName) as String?;
@@ -46,24 +59,19 @@ class DataPersistenceRepository {
   String? get getUserId => authentication.get(BoxKeys.userId) as String?;
 
   /// Set the access token.
-  Future<dynamic> setAccessToken(String? value) async =>
-      authentication.put(BoxKeys.accessToken, value);
+  Future<dynamic> setAccessToken(String? value) async => authentication.put(BoxKeys.accessToken, value);
 
   /// Set the refresh token.
-  Future<dynamic> setRefreshToken(String? value) async =>
-      authentication.put(BoxKeys.refreshToken, value);
+  Future<dynamic> setRefreshToken(String? value) async => authentication.put(BoxKeys.refreshToken, value);
 
   /// Set the user First Name.
-  Future<dynamic> setFirstName(String? value) async =>
-      authentication.put(BoxKeys.firstName, value);
+  Future<dynamic> setFirstName(String? value) async => authentication.put(BoxKeys.firstName, value);
 
   /// Set the user Last Name.
-  Future<dynamic> setLastName(String? value) async =>
-      authentication.put(BoxKeys.lastName, value);
+  Future<dynamic> setLastName(String? value) async => authentication.put(BoxKeys.lastName, value);
 
   /// Set the user id.
-  Future<dynamic> setUserId(String? value) async =>
-      authentication.put(BoxKeys.userId, value);
+  Future<dynamic> setUserId(String? value) async => authentication.put(BoxKeys.userId, value);
 
   /// Deletes all the saved information in the [authentication] - [Box].
   Future<void> logout() async => authentication.clear();

@@ -1,6 +1,3 @@
-
-
-
 import 'app_localizations.dart';
 
 /// The translations for English (`en`).
@@ -60,4 +57,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get email => 'Email';
+
+  @override
+  String get onboarding0 => 'Count the hours worked on your projects!';
+
+  @override
+  String get onboarding1 => 'Create a project and invite others to participate!';
+
+  @override
+  String get onboarding2 => 'Join a project and start recording your hours';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get invalidCredentials => 'Invalid credentials';
 }

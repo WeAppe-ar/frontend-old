@@ -20,5 +20,11 @@
     "forgotYourPassword": "Forgot your password?",
     "register":"Register",
     "dontHaveAnAccount":"Don't have an account?",
-    "email":"Email"
+    "email":"Email",
+    "onboarding0": "Count the hours worked on your projects!",
+    "onboarding1": "Create a project and invite others to participate!",
+    "onboarding2": "Join a project and start recording your hours",
+    "next": "Next",
+    "skip": "Skip",
+    "invalidCredentials": "Invalid credentials"
 }

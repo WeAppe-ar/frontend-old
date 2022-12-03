@@ -2,25 +2,28 @@ import 'package:appsize/appsize.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
 class PageOnboarding extends StatefulWidget {
   const PageOnboarding({super.key});
+
+  static String get name => 'onboarding';
 
   @override
   State<PageOnboarding> createState() => _PageOnboardingState();
 }
 
 class _PageOnboardingState extends State<PageOnboarding> {
-  int index = 0;
-
   final PageController _pageController = PageController();
-
-  final map = <int, String>{
-    0: '¡Contabilizá tus horas trabajadas en proyectos individuales o grupales!',
-    1: '¡Crea un proyecto e invitá a otros a participar!',
-    2: 'Unite a un proyecto ya armado y conectate con los participantes',
+  late final l10n = context.l10n;
+  late final map = <int, String>{
+    0: l10n.onboarding0,
+    1: l10n.onboarding1,
+    2: l10n.onboarding2,
   };
+
+  int index = 0;
 
   @override
   void initState() {
@@ -39,8 +42,7 @@ class _PageOnboardingState extends State<PageOnboarding> {
         children: [
           PageView(
             controller: _pageController,
-            children:
-                Iterable<int>.generate(3).map(OnboardingImage.new).toList(),
+            children: Iterable<int>.generate(3).map(OnboardingImage.new).toList(),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 68.sp, horizontal: 38.sp),
@@ -89,7 +91,7 @@ class _PageOnboardingState extends State<PageOnboarding> {
                           curve: Curves.ease,
                         );
                       },
-                      title: 'Omitir',
+                      title: l10n.skip,
                     ),
                     WeappearMaterialButton(
                       height: 44.sp,
@@ -101,7 +103,7 @@ class _PageOnboardingState extends State<PageOnboarding> {
                           curve: Curves.ease,
                         );
                       },
-                      title: 'Siguiente',
+                      title: l10n.skip,
                     ),
                   ],
                 ),

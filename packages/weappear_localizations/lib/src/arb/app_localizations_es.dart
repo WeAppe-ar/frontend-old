@@ -1,6 +1,3 @@
-
-
-
 import 'app_localizations.dart';
 
 /// The translations for Spanish Castilian (`es`).
@@ -60,4 +57,22 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get email => 'Correo Electrónico';
+
+  @override
+  String get onboarding0 => '¡Contabilizá las horas trabajadas en tus proyectos!';
+
+  @override
+  String get onboarding1 => '¡Crea un proyecto e invitá a otros a participar!';
+
+  @override
+  String get onboarding2 => 'Unite a un proyecto y empieza a registrar tus horas';
+
+  @override
+  String get next => 'Siguiente';
+
+  @override
+  String get skip => 'Omitir';
+
+  @override
+  String get invalidCredentials => 'Credenciales inválidas';
 }

@@ -4,6 +4,9 @@ import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router_flow/go_router_flow.dart';
+import 'package:weappear/app/models/logged_in_stream.dart';
+import 'package:weappear/login/view/login_page.dart';
 import 'package:weappear/onboarding/view/onboarding_page.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
@@ -48,15 +51,18 @@ class ViewApp extends StatefulWidget {
 }
 
 class _ViewAppState extends State<ViewApp> {
+  late final GoRouter _router;
+
   @override
   void initState() {
     super.initState();
     WeAppearUi.initUI();
+    _router = router(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: WeAppearTheme.lightTheme,
       localizationsDelegates: const [
@@ -66,15 +72,47 @@ class _ViewAppState extends State<ViewApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: Navigator(
-        onPopPage: (Route<dynamic> route, dynamic result) => route.didPop(result),
-        pages: const [
-          MaterialPage<void>(
-            child: PageOnboarding(),
-            key: ValueKey('onboarding'),
-          ),
-        ],
-      ),
+      routerDelegate: _router.routerDelegate,
+      routeInformationProvider: _router.routeInformationProvider,
+      routeInformationParser: _router.routeInformationParser,
+    );
+  }
+
+  GoRouter router(BuildContext context) {
+    final dataPersistenceRepository = context.read<DataPersistenceRepository>();
+
+    return GoRouter(
+      refreshListenable: LoggedInStream(dataPersistenceRepository.isLoggedInStream),
+      debugLogDiagnostics: true,
+      initialLocation: '/login',
+      routes: <GoRoute>[
+        GoRoute(
+          path: '/login',
+          name: PageLogin.name,
+          builder: (_, state) => PageLogin(key: state.pageKey),
+        ),
+        GoRoute(
+          path: '/onboarding',
+          name: PageOnboarding.name,
+          builder: (_, state) => PageOnboarding(key: state.pageKey),
+        ),
+      ],
+      redirect: (context, state) {
+        final unauthenticatedPermittedRoutes = [
+          '/onboarding',
+        ];
+
+        final homePath = PageLogin.name;
+
+        final loggedIn = dataPersistenceRepository.isLoggedIn;
+        final loggingIn = unauthenticatedPermittedRoutes.any(state.location.startsWith);
+
+        if (loggedIn && !loggingIn) {
+          return homePath;
+        }
+
+        return null;
+      },
     );
   }
 }
