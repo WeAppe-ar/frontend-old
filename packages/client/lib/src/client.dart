@@ -67,7 +67,7 @@ class Client {
 
     return http.httpGet<MetaPaginated<Record>>(
       uri,
-      parser: (map) => MetaPaginated<Record>.fromJson(
+      parser: (map) => MetaPaginated<Record>.fromMap(
         map,
         itemConstructor: Record.fromJson,
       ),

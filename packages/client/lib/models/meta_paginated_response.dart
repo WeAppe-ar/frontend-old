@@ -13,16 +13,6 @@ class MetaPaginated<T> extends Equatable {
     this.items,
   });
 
-  /// Takes in a String and parses it to a JSON, and then to a [MetaPaginated] object.
-  factory MetaPaginated.fromJson(
-    Map<String, dynamic> source, {
-    required T Function(Map<String, dynamic> item) itemConstructor,
-  }) =>
-      MetaPaginated.fromMap(
-        source,
-        itemConstructor: itemConstructor,
-      );
-
   /// Returns a [MetaPaginated] parsed from a [Map].
   factory MetaPaginated.fromMap(
     Map<String, dynamic> map, {

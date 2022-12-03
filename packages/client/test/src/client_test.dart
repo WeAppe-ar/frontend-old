@@ -13,5 +13,5 @@ void main() async {
   //   password: 'Prueba123!',
   // );
   final records = await client.getRecords('63882a45c60b7f303b8b365b');
-  print(records);
+  print(records?.items?.first.userId.$oid);
 }
