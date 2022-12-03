@@ -165,6 +165,12 @@ abstract class AppLocalizations {
   /// **'Invalid mail'**
   String get invalidMail;
 
+  /// No description provided for @invalidPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid password'**
+  String get invalidPassword;
+
   /// No description provided for @signIn.
   ///
   /// In en, this message translates to:

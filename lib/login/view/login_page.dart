@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router_flow/go_router_flow.dart';
 import 'package:weappear/login/cubit/login_cubit.dart';
 import 'package:weappear/onboarding/view/onboarding_page.dart';
+import 'package:weappear/utils/validators.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
@@ -86,12 +87,14 @@ class _ViewLoginState extends State<ViewLogin> {
                         ),
                         SizedBox(height: 92.sp),
                         WeappearTextFormField(
+                          validator: (value) => validateEmail(value, context),
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           hintText: l10n.email,
                         ),
                         SizedBox(height: 32.sp),
                         WeappearTextFormField(
+                          validator: (value) => validatePassword(value, context),
                           handlePassword: true,
                           controller: _passwordController,
                           keyboardType: TextInputType.emailAddress,

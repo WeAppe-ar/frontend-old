@@ -15,6 +15,7 @@
     "cancel": "Cancel",
     "youHaveToCompleteThisField": "You have to complete this field",
     "invalidMail":"Invalid mail",
+    "invalidPassword":"Invalid password",
     "signIn": "Sign In",
     "password":"Password",
     "forgotYourPassword": "Forgot your password?",

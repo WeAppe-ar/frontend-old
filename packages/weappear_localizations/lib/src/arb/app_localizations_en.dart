@@ -41,6 +41,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get invalidMail => 'Invalid mail';
 
   @override
+  String get invalidPassword => 'Invalid password';
+
+  @override
   String get signIn => 'Sign In';
 
   @override

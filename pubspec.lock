@@ -948,7 +948,7 @@ packages:
     description:
       path: "."
       ref: "chore/migrate-to-shelf"
-      resolved-ref: "30ee11afe0db71d0b59c5630ca10e9c1f5bcd84f"
+      resolved-ref: "8bf75a53b0324dcbdd4b5e591b3a78827f98e755"
       url: "https://github.com/tomassasovsky/WeAppe.ar.git"
     source: git
     version: "1.0.0"

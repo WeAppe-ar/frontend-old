@@ -47,7 +47,6 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 42.sp,
       child: TextFormField(
         controller: widget.controller,
         autovalidateMode: AutovalidateMode.disabled,
@@ -82,6 +81,12 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
               color: WeappearColors.blueActivated,
+              width: 2.sp,
+            ),
+          ),
+          focusedErrorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: const Color(0xffF44242),
               width: 2.sp,
             ),
           ),

@@ -35,10 +35,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cancel => 'Cancelar';
 
   @override
-  String get youHaveToCompleteThisField => 'tienes que completar este campo';
+  String get youHaveToCompleteThisField => 'Tienes que completar este campo';
 
   @override
   String get invalidMail => 'Mail invalido';
+
+  @override
+  String get invalidPassword => 'Contraseña invalida';
 
   @override
   String get signIn => 'Iniciar Sesión';
