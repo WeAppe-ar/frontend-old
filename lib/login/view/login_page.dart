@@ -1,10 +1,10 @@
 import 'package:appsize/appsize.dart';
-import 'package:auth_repository/auth_repository.dart';
+import 'package:client/client.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:weappear/login/bloc/login_bloc.dart';
+import 'package:weappear/login/cubit/login_cubit.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
@@ -14,9 +14,9 @@ class PageLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => BlocLogin(
-        authRepository: context.read<AuthRepository>(),
+      create: (_) => LoginCubit(
         dataPersistenceRepository: context.read<DataPersistenceRepository>(),
+        client: context.read<Client>(),
       ),
       child: const ViewLogin(),
     );
@@ -38,9 +38,9 @@ class _ViewLoginState extends State<ViewLogin> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<BlocLogin, BlocStateLogin>(
+    return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state is BlocStateLoginSuccessful) {
+        if (state.isSuccess) {
           // Navigator.of(context).pushReplacementNamed(
           //   Routes.home,
           // );
@@ -107,9 +107,10 @@ class _ViewLoginState extends State<ViewLogin> {
                           height: 77.sp,
                         ),
                         WeappearMaterialButton(
-                          onPressed: () {},
-                          height: 54.sp,
+                          onPressed: submit,
+                          height: 48.sp,
                           minWidth: 285.sp,
+                          isLoading: state.isLoading,
                           title: context.l10n.signIn.toUpperCase(),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.sp),
@@ -152,7 +153,7 @@ class _ViewLoginState extends State<ViewLogin> {
   void submit([dynamic _]) {
     FocusScope.of(context).requestFocus(FocusNode());
     if (_formKey.currentState?.validate() ?? false) {
-      context.read<BlocLogin>().tryLogin(
+      context.read<LoginCubit>().login(
             _emailController.text,
             _passwordController.text,
           );

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:client/models/meta_paginated_response.dart';
 import 'package:client/models/models.dart';
 import 'package:http_handler/http_handler.dart';

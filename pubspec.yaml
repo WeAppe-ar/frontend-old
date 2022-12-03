@@ -8,9 +8,9 @@ environment:
 
 dependencies:
   appsize: ^1.2.0
-  auth_repository:
-    path: packages/auth_repository
   bloc: ^8.0.3
+  client:
+    path: packages/client
   data_persistence:
     path: packages/data_persistence
   equatable: ^2.0.3

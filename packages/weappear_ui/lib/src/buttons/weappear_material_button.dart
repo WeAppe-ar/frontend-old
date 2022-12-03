@@ -22,6 +22,7 @@ class WeappearMaterialButton extends StatelessWidget {
     this.useHighlightElevation = true,
     this.fontColor = const Color(0xffFBFBFB),
     this.disabledColor = const Color(0xffA1C3FB),
+    this.isLoading = false,
   });
 
   /// This method creates a [WeappearMaterialButton] with outlined styling.
@@ -32,6 +33,7 @@ class WeappearMaterialButton extends StatelessWidget {
     required String title,
     double? fontSize,
     FontWeight? fontWeight,
+    bool isLoading = false,
   }) {
     final isActive = onPressed != null;
 
@@ -39,8 +41,7 @@ class WeappearMaterialButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.sp),
         side: BorderSide(
-          color:
-              isActive ? WeappearColors.blueActivated : const Color(0xffA1C3FB),
+          color: isActive ? WeappearColors.blueActivated : const Color(0xffA1C3FB),
           width: 1.sp,
         ),
       ),
@@ -54,9 +55,9 @@ class WeappearMaterialButton extends StatelessWidget {
       title: title,
       fontSize: fontSize,
       fontWeight: fontWeight,
-      fontColor:
-          isActive ? WeappearColors.blueActivated : const Color(0xffA1C3FB),
+      fontColor: isActive ? WeappearColors.blueActivated : const Color(0xffA1C3FB),
       useHighlightElevation: false,
+      isLoading: isLoading,
     );
   }
 
@@ -99,6 +100,9 @@ class WeappearMaterialButton extends StatelessWidget {
   /// Whether we use the highlightElevation is enabled or not.
   final bool useHighlightElevation;
 
+  /// Whether the button is loading or not.
+  final bool isLoading;
+
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -115,17 +119,21 @@ class WeappearMaterialButton extends StatelessWidget {
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.sp),
           ),
-      child: Text(
-        title,
-        style: TextStyle(
-          color: fontColor,
-          fontSize: 16.sp,
-          fontFamily: 'Gravity',
-          fontWeight: fontWeight,
-        ).copyWith(
-          fontSize: fontSize,
-        ),
-      ),
+      child: isLoading
+          ? CircularProgressIndicator(
+              color: fontColor,
+            )
+          : Text(
+              title,
+              style: TextStyle(
+                color: fontColor,
+                fontSize: 16.sp,
+                fontFamily: 'Gravity',
+                fontWeight: fontWeight,
+              ).copyWith(
+                fontSize: fontSize,
+              ),
+            ),
     );
   }
 }
