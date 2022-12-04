@@ -71,4 +71,47 @@ class Client {
       ),
     );
   }
+
+  Future<Record?> clockIn({
+    required String organizationId,
+  }) async {
+    final uri = Uri.http(authority, '/records/clokIn');
+
+    return http.httpPost<Record>(
+      uri,
+      body: <String, dynamic>{
+        'organizationId': organizationId,
+      },
+      parser: Record.fromJson,
+    );
+  }
+
+  Future<Record?> clockOut({
+    required String organizationId,
+  }) async {
+    final uri = Uri.http(authority, '/records/clokOut');
+
+    return http.httpPost<Record>(
+      uri,
+      body: <String, dynamic>{
+        'organizationId': organizationId,
+      },
+      parser: Record.fromJson,
+    );
+  }
+
+  Future<Organization?> createOrganization({
+    required String name,
+    required String color,
+  }) async {
+    final uri = Uri.http(authority, '/organizations');
+    return http.httpPost<Organization>(
+      uri,
+      body: <String, dynamic>{
+        'name': name,
+        'color': color,
+      },
+      parser: Organization.fromJson,
+    );
+  }
 }
