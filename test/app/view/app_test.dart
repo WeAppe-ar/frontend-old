@@ -1,7 +1,6 @@
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:weappear/app/app.dart';
-import 'package:weappear/login/view/login_page.dart';
+import 'package:weappear/auth/view/login_page.dart';
 
 ///import 'package:weappear/app/app.dart';
 ///import 'package:weappear/login/view/login_page.dart';

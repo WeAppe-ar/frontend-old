@@ -27,5 +27,8 @@
     "onboarding2": "Join a project and start recording your hours",
     "next": "Next",
     "skip": "Skip",
-    "invalidCredentials": "Invalid credentials"
+    "invalidCredentials": "Invalid credentials",
+    "verificationCode": "Verification code",
+    "send": "Send",
+    "alreadyHaveAnAccount": "Already have an account?"
 }

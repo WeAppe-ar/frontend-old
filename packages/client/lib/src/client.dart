@@ -36,24 +36,32 @@ class Client {
     );
   }
 
-  /// This method is used to register into the app.
-  Future<User?> register({
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String password,
-  }) async {
+  /// This method is used to send the OTP code to the user email.
+  Future<bool?> register(String email) async {
     final uri = Uri.http(authority, '/users/register');
 
-    return http.httpPost<User>(
+    return http.boolPost(
       uri,
       body: <String, dynamic>{
-        'firstName': firstName,
-        'lastName': lastName,
         'email': email,
-        'password': password,
       },
-      parser: User.fromJson,
+    );
+  }
+
+  /// This method is used to verify the user's email.
+  Future<UserActivation?> verifyEmail({
+    required String email,
+    required String code,
+  }) async {
+    final uri = Uri.http(authority, '/users/verify-email');
+
+    return http.httpPost<UserActivation>(
+      uri,
+      body: <String, dynamic>{
+        'email': email,
+        'activationCode': code,
+      },
+      parser: UserActivation.fromJson,
     );
   }
 

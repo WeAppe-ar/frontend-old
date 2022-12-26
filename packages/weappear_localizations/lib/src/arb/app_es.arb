@@ -27,5 +27,8 @@
     "onboarding2": "Unite a un proyecto y empieza a registrar tus horas",
     "next": "Siguiente",
     "skip": "Omitir",
-    "invalidCredentials": "Credenciales inválidas"
+    "invalidCredentials": "Credenciales inválidas",
+    "verificationCode": "Código de Verificación",
+    "send": "Enviar",
+    "alreadyHaveAnAccount": "¿Ya tienes una cuenta?"
 }

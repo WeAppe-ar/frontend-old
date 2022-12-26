@@ -7,46 +7,54 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router_flow/go_router_flow.dart';
-import 'package:weappear/login/cubit/login_cubit.dart';
+import 'package:weappear/auth/cubit/auth_cubit.dart';
+import 'package:weappear/auth/view/login_page.dart';
+
 import 'package:weappear/onboarding/view/onboarding_page.dart';
 import 'package:weappear/utils/validators.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
-class PageLogin extends StatelessWidget {
-  const PageLogin({super.key});
+class PageCreateAccount extends StatelessWidget {
+  const PageCreateAccount({
+    super.key,
+    required this.activationId,
+  });
 
-  static String get name => 'login';
+  static String get name => 'create-account';
+
+  final String activationId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => LoginCubit(
+      create: (_) => AuthCubit(
         dataPersistenceRepository: context.read<DataPersistenceRepository>(),
         client: context.read<Client>(),
       ),
-      child: const ViewLogin(),
+      child: const ViewCreateAccount(),
     );
   }
 }
 
-class ViewLogin extends StatefulWidget {
-  const ViewLogin({super.key});
+class ViewCreateAccount extends StatefulWidget {
+  const ViewCreateAccount({super.key});
 
   @override
-  State<ViewLogin> createState() => _ViewLoginState();
+  State<ViewCreateAccount> createState() => _ViewCreateAccountState();
 }
 
-class _ViewLoginState extends State<ViewLogin> {
+class _ViewCreateAccountState extends State<ViewCreateAccount> {
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _codeController = TextEditingController();
+  final _codeKey = GlobalKey<FormState>();
+  final _emailKey = GlobalKey<FormState>();
   Timer _debounce = Timer(Duration.zero, () {});
   late final l10n = context.l10n;
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state.isSuccess) {
           context.goNamed(PageOnboarding.name);
@@ -64,8 +72,7 @@ class _ViewLoginState extends State<ViewLogin> {
               padding: EdgeInsets.symmetric(
                 horizontal: 34.sp,
               ),
-              child: Form(
-                key: _formKey,
+              child: AutofillGroup(
                 child: AutofillGroup(
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
@@ -78,7 +85,7 @@ class _ViewLoginState extends State<ViewLogin> {
                         ),
                         SizedBox(height: 40.sp),
                         Text(
-                          l10n.signIn.toUpperCase(),
+                          l10n.register.toUpperCase(),
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w700,
@@ -86,44 +93,51 @@ class _ViewLoginState extends State<ViewLogin> {
                           ),
                         ),
                         SizedBox(height: 92.sp),
-                        WeappearTextFormField(
-                          validator: (value) => validateEmail(value, context),
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          hintText: l10n.email,
+                        Form(
+                          key: _emailKey,
+                          child: WeappearTextFormField(
+                            key: const Key('emailInput'),
+                            validator: (value) => validateEmail(value, context),
+                            controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            hintText: l10n.email,
+                          ),
                         ),
                         SizedBox(height: 32.sp),
-                        WeappearTextFormField(
-                          validator: (value) => validatePassword(value, context),
-                          handlePassword: true,
-                          controller: _passwordController,
-                          keyboardType: TextInputType.emailAddress,
-                          hintText: l10n.password,
-                        ),
-                        SizedBox(height: 7.sp),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            child: Text(
-                              l10n.forgotYourPassword,
-                              style: TextStyle(
-                                color: const Color(0xff4285F4),
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Form(
+                                key: _codeKey,
+                                child: WeappearTextFormField(
+                                  validator: (value) => validateOTP(value, context),
+                                  controller: _codeController,
+                                  keyboardType: TextInputType.number,
+                                  hintText: l10n.verificationCode,
+                                  onSaved: submit,
+                                ),
                               ),
                             ),
-                          ),
+                            SizedBox(width: 5.sp),
+                            WeappearMaterialButton(
+                              onPressed: sendCode,
+                              height: 42.sp,
+                              minWidth: 64.sp,
+                              title: l10n.send,
+                            )
+                          ],
                         ),
                         SizedBox(
                           height: 77.sp,
                         ),
                         WeappearMaterialButton(
+                          key: const Key('loginButton'),
                           onPressed: submit,
                           height: 48.sp,
                           minWidth: 285.sp,
                           isLoading: state.isLoading,
-                          title: l10n.signIn.toUpperCase(),
+                          title: l10n.register.toUpperCase(),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.sp),
                           ),
@@ -132,7 +146,7 @@ class _ViewLoginState extends State<ViewLogin> {
                           height: 36.sp,
                         ),
                         Text(
-                          l10n.dontHaveAnAccount,
+                          l10n.alreadyHaveAnAccount,
                           style: TextStyle(
                             color: const Color(0xffC9C8C8),
                             fontSize: 12.sp,
@@ -141,8 +155,9 @@ class _ViewLoginState extends State<ViewLogin> {
                         ),
                         GestureDetector(
                           behavior: HitTestBehavior.opaque,
+                          onTap: () => context.goNamed(PageLogin.name),
                           child: Text(
-                            l10n.register.toUpperCase(),
+                            l10n.signIn.toUpperCase(),
                             style: TextStyle(
                               color: const Color(0xff4285F4),
                               fontSize: 13.sp,
@@ -162,12 +177,23 @@ class _ViewLoginState extends State<ViewLogin> {
     );
   }
 
+  void sendCode([dynamic _]) {
+    FocusScope.of(context).requestFocus(FocusNode());
+    if (_emailKey.currentState?.validate() ?? false) {
+      context.read<AuthCubit>().sendEmailCode(
+            _emailController.text,
+          );
+    }
+  }
+
   void submit([dynamic _]) {
     FocusScope.of(context).requestFocus(FocusNode());
-    if (_formKey.currentState?.validate() ?? false) {
-      context.read<LoginCubit>().login(
+    final codeValid = _codeKey.currentState?.validate() ?? false;
+    final emailValid = _emailKey.currentState?.validate() ?? false;
+    if (codeValid && emailValid) {
+      context.read<AuthCubit>().verifyEmail(
             _emailController.text,
-            _passwordController.text,
+            _codeController.text,
           );
     }
   }

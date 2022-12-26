@@ -6,7 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router_flow/go_router_flow.dart';
 import 'package:weappear/app/models/logged_in_stream.dart';
-import 'package:weappear/login/view/login_page.dart';
+import 'package:weappear/auth/view/create_account_page.dart';
+import 'package:weappear/auth/view/login_page.dart';
+import 'package:weappear/auth/view/register_page.dart';
 import 'package:weappear/onboarding/view/onboarding_page.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
@@ -90,6 +92,27 @@ class _ViewAppState extends State<ViewApp> {
           path: '/login',
           name: PageLogin.name,
           builder: (_, state) => PageLogin(key: state.pageKey),
+        ),
+        GoRoute(
+          path: '/register',
+          name: PageRegister.name,
+          builder: (_, state) => PageRegister(key: state.pageKey),
+        ),
+        GoRoute(
+          path: '/create-account',
+          name: PageCreateAccount.name,
+          builder: (_, state) {
+            final activationId = state.extra as String?;
+
+            if (activationId == null || activationId.isEmpty) {
+              throw Exception('Activation ID is null');
+            }
+
+            return PageCreateAccount(
+              key: state.pageKey,
+              activationId: activationId,
+            );
+          },
         ),
         GoRoute(
           path: '/onboarding',

@@ -14,6 +14,7 @@ class WeappearTextFormField extends StatefulWidget {
     this.keyboardType,
     this.validator,
     this.controller,
+    this.onSaved,
   });
 
   /// Whether the text field will manage sensitive information.
@@ -30,6 +31,9 @@ class WeappearTextFormField extends StatefulWidget {
 
   /// The controller of the text field.
   final TextEditingController? controller;
+
+  /// Callback called when saved.
+  final void Function(String?)? onSaved;
 
   @override
   State<WeappearTextFormField> createState() => _WeappearTextFormFieldState();
@@ -48,6 +52,7 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextFormField(
+        onSaved: widget.onSaved,
         controller: widget.controller,
         autovalidateMode: AutovalidateMode.disabled,
         autocorrect: false,

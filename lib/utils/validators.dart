@@ -27,3 +27,15 @@ String? validatePassword(String? value, BuildContext context) {
   }
   return null;
 }
+
+/// Provides mail validation
+String? validateOTP(String? value, BuildContext context) {
+  if (value == null || value.isEmpty) {
+    return context.l10n.youHaveToCompleteThisField;
+  }
+
+  if (value.length != 6) {
+    return context.l10n.invalidCode;
+  }
+  return null;
+}

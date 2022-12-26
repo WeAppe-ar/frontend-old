@@ -92,6 +92,29 @@ class HttpHandler extends Equatable {
   }
 
   /// This method is used to make a POST request.
+  Future<bool> boolPost(
+    Uri uri, {
+    Map<String, dynamic>? body,
+    Map<String, String>? queryParams,
+  }) async {
+    http.Response response;
+
+    try {
+      response = await _httpClient.post(
+        uri,
+        body: (body != null) ? jsonEncode(body) : null,
+        headers: {
+          if (_token != null) 'Authorization': 'Bearer $_token',
+        },
+      );
+    } catch (_) {
+      return false;
+    }
+
+    return response.statusCode == 200;
+  }
+
+  /// This method is used to make a POST request.
   Future<T?> httpPost<T>(
     Uri uri, {
     Map<String, dynamic>? body,

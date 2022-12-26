@@ -78,4 +78,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get invalidCredentials => 'Credenciales inválidas';
+
+  @override
+  String get verificationCode => 'Código de Verificación';
+
+  @override
+  String get send => 'Enviar';
+
+  @override
+  String get alreadyHaveAnAccount => '¿Ya tienes una cuenta?';
 }
