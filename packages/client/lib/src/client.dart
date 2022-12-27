@@ -65,6 +65,28 @@ class Client {
     );
   }
 
+  Future<UserActivation?> activateUser({
+    required String activationId,
+    required String email,
+    required String firstName,
+    required String lastName,
+    required String password,
+  }) async {
+    final uri = Uri.http(authority, '/users/activate');
+
+    return http.httpPost<UserActivation>(
+      uri,
+      body: <String, dynamic>{
+        'activationId': activationId,
+        'email': email,
+        'firstName': firstName,
+        'lastName': lastName,
+        'password': password,
+      },
+      parser: UserActivation.fromJson,
+    );
+  }
+
   /// This method is used to register into the app.
   Future<MetaPaginated<Record>?> getRecords(String organizationId) async {
     final uri = Uri.http(authority, '/records', <String, String>{

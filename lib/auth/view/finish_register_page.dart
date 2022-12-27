@@ -88,22 +88,29 @@ class _ViewFinishRegisterState extends State<ViewFinishRegister> {
                         ),
                         SizedBox(height: 92.sp),
                         Form(
-                          key: _emailKey,
                           child: WeappearTextFormField(
-                            key: const Key('emailInput'),
-                            validator: (value) => validateEmail(value, context),
-                            controller: _emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            hintText: l10n.email,
+                            hintText: l10n.name,
                           ),
                         ),
-                        SizedBox(height: 32.sp),
+                        SizedBox(height: 5.sp),
+                        Form(
+                          child: WeappearTextFormField(
+                            hintText: l10n.lastName,
+                          ),
+                        ),
+                        SizedBox(height: 5.sp),
+                        Form(
+                          child: WeappearTextFormField(
+                            hintText: l10n.password,
+                            handlePassword: true,
+                          ),
+                        ),
                         SizedBox(
                           height: 77.sp,
                         ),
                         WeappearMaterialButton(
                           key: const Key('loginButton'),
-                          onPressed: submit,
+                          onPressed: () {},
                           height: 48.sp,
                           minWidth: 285.sp,
                           isLoading: state.isLoading,
@@ -145,27 +152,6 @@ class _ViewFinishRegisterState extends State<ViewFinishRegister> {
         );
       },
     );
-  }
-
-  void sendCode([dynamic _]) {
-    FocusScope.of(context).requestFocus(FocusNode());
-    if (_emailKey.currentState?.validate() ?? false) {
-      context.read<AuthCubit>().sendEmailCode(
-            _emailController.text,
-          );
-    }
-  }
-
-  void submit([dynamic _]) {
-    FocusScope.of(context).requestFocus(FocusNode());
-    final codeValid = _codeKey.currentState?.validate() ?? false;
-    final emailValid = _emailKey.currentState?.validate() ?? false;
-    if (codeValid && emailValid) {
-      context.read<AuthCubit>().verifyEmail(
-            _emailController.text,
-            _codeController.text,
-          );
-    }
   }
 }
 
