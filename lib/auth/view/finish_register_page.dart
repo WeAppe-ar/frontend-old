@@ -11,15 +11,14 @@ import 'package:weappear/auth/cubit/auth_cubit.dart';
 import 'package:weappear/auth/view/create_account_page.dart';
 import 'package:weappear/auth/view/login_page.dart';
 
-import 'package:weappear/onboarding/view/onboarding_page.dart';
 import 'package:weappear/utils/validators.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
-class PageRegister extends StatelessWidget {
-  const PageRegister({super.key});
+class PageFinishRegister extends StatelessWidget {
+  const PageFinishRegister({super.key});
 
-  static String get name => 'register';
+  static String get name => 'finish-register';
 
   @override
   Widget build(BuildContext context) {
@@ -28,23 +27,19 @@ class PageRegister extends StatelessWidget {
         dataPersistenceRepository: context.read<DataPersistenceRepository>(),
         client: context.read<Client>(),
       ),
-      child: const ViewRegister(),
+      child: const ViewFinishRegister(),
     );
   }
 }
 
-class ViewRegister extends StatefulWidget {
-  const ViewRegister({super.key});
+class ViewFinishRegister extends StatefulWidget {
+  const ViewFinishRegister({super.key});
 
   @override
-  State<ViewRegister> createState() => _ViewRegisterState();
+  State<ViewFinishRegister> createState() => _ViewFinishRegisterState();
 }
 
-class _ViewRegisterState extends State<ViewRegister> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _codeController = TextEditingController();
-  final _codeKey = GlobalKey<FormState>();
-  final _emailKey = GlobalKey<FormState>();
+class _ViewFinishRegisterState extends State<ViewFinishRegister> {
   Timer _debounce = Timer(Duration.zero, () {});
   late final l10n = context.l10n;
 
@@ -103,30 +98,6 @@ class _ViewRegisterState extends State<ViewRegister> {
                           ),
                         ),
                         SizedBox(height: 32.sp),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Form(
-                                key: _codeKey,
-                                child: WeappearTextFormField(
-                                  validator: (value) => validateOTP(value, context),
-                                  controller: _codeController,
-                                  keyboardType: TextInputType.number,
-                                  hintText: l10n.verificationCode,
-                                  onSaved: submit,
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 5.sp),
-                            WeappearMaterialButton(
-                              onPressed: sendCode,
-                              height: 42.sp,
-                              minWidth: 64.sp,
-                              title: l10n.send,
-                            )
-                          ],
-                        ),
                         SizedBox(
                           height: 77.sp,
                         ),
@@ -194,7 +165,6 @@ class _ViewRegisterState extends State<ViewRegister> {
             _emailController.text,
             _codeController.text,
           );
-      context.goNamed('finish-register');
     }
   }
 }

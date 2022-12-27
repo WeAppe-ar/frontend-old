@@ -87,4 +87,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get alreadyHaveAnAccount => '¿Ya tienes una cuenta?';
+
+  @override
+  String get name => 'Nombre';
+
+  @override
+  String get lastName => 'Apellido';
+
+  @override
+  String get finishRegister => 'Registro Final';
 }
