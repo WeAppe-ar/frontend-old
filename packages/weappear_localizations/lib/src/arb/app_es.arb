@@ -31,7 +31,7 @@
   "verificationCode": "Código de Verificación",
   "send": "Enviar",
   "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
-  "name": "Nombre",
+  "firstName": "Nombre",
   "lastName": "Apellido",
   "finishRegister": "Registro Final"
 }

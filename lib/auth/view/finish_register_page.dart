@@ -41,6 +41,10 @@ class ViewFinishRegister extends StatefulWidget {
 
 class _ViewFinishRegisterState extends State<ViewFinishRegister> {
   Timer _debounce = Timer(Duration.zero, () {});
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final _passwordKey = GlobalKey<FormState>();
   late final l10n = context.l10n;
 
   @override
@@ -89,28 +93,33 @@ class _ViewFinishRegisterState extends State<ViewFinishRegister> {
                         SizedBox(height: 92.sp),
                         Form(
                           child: WeappearTextFormField(
+                            validator: null,
                             hintText: l10n.name,
+                            controller: _firstNameController,
                           ),
                         ),
                         SizedBox(height: 5.sp),
                         Form(
                           child: WeappearTextFormField(
                             hintText: l10n.lastName,
+                            controller: _lastNameController,
                           ),
                         ),
                         SizedBox(height: 5.sp),
-                        Form(
-                          child: WeappearTextFormField(
-                            hintText: l10n.password,
-                            handlePassword: true,
-                          ),
+                        WeappearTextFormField(
+                          key: const Key('passwordInput'),
+                          validator: (value) => validatePassword(value, context),
+                          handlePassword: true,
+                          controller: _passwordController,
+                          keyboardType: TextInputType.emailAddress,
+                          hintText: l10n.password,
                         ),
                         SizedBox(
                           height: 77.sp,
                         ),
                         WeappearMaterialButton(
-                          key: const Key('loginButton'),
-                          onPressed: () {},
+                          //key: const Key('finish-register'),
+                          onPressed: submit,
                           height: 48.sp,
                           minWidth: 285.sp,
                           isLoading: state.isLoading,
@@ -152,6 +161,18 @@ class _ViewFinishRegisterState extends State<ViewFinishRegister> {
         );
       },
     );
+  }
+
+  void submit([dynamic _]) {
+    FocusScope.of(context).requestFocus(FocusNode());
+    final passwordValid = _passwordKey.currentState?.validate() ?? false;
+    if (passwordValid) {
+      context.read<AuthCubit>().activateUser(
+            _firstNameController.text,
+            _lastNameController.text,
+            _passwordController.text,
+          );
+    }
   }
 }
 

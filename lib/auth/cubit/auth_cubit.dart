@@ -74,6 +74,15 @@ class AuthCubit extends Cubit<AuthState> {
       emit(state.copyWith(status: AuthStatus.failure));
     }
   }
+  Future<void> activateUser(String firstName, String lastName, String password)async{
+    try {
+      final response = await _client.activateUser(activationId: '', email: , firstName: firstName, lastName: lastName, password: password);
+    } catch (_) {
+      
+    }
+
+
+  }
 
   final Client _client;
   final DataPersistenceRepository _dataPersistenceRepository;

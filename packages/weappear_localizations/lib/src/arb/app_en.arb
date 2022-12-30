@@ -31,7 +31,7 @@
   "verificationCode": "Verification code",
   "send": "Send",
   "alreadyHaveAnAccount": "Already have an account?",
-  "name": "Name",
+  "firstName": "First Name",
   "lastName": "Last Name",
   "finishRegister": "Finish Register"
 }
