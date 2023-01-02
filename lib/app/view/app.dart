@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router_flow/go_router_flow.dart';
 import 'package:weappear/app/models/logged_in_stream.dart';
-import 'package:weappear/auth/view/create_account_page.dart';
 import 'package:weappear/auth/view/finish_register_page.dart';
 import 'package:weappear/auth/view/login_page.dart';
 import 'package:weappear/auth/view/register_page.dart';
@@ -87,12 +86,19 @@ class _ViewAppState extends State<ViewApp> {
     return GoRouter(
       refreshListenable: LoggedInStream(dataPersistenceRepository.isLoggedInStream),
       debugLogDiagnostics: true,
-      initialLocation: '/finish-register',
+      initialLocation: '/login',
       routes: <GoRoute>[
         GoRoute(
           path: '/login',
           name: PageLogin.name,
-          builder: (_, state) => PageLogin(key: state.pageKey),
+          builder: (_, state) {
+            final registeredSuccessfully = state.extra as bool?;
+
+            return PageLogin(
+              key: state.pageKey,
+              registerSuccessful: registeredSuccessfully ?? false,
+            );
+          },
         ),
         GoRoute(
           path: '/register',
@@ -102,21 +108,23 @@ class _ViewAppState extends State<ViewApp> {
         GoRoute(
           path: '/finish-register',
           name: PageFinishRegister.name,
-          builder: (_, state) => PageFinishRegister(key: state.pageKey),
-        ),
-        GoRoute(
-          path: '/create-account',
-          name: PageCreateAccount.name,
           builder: (_, state) {
-            final activationId = state.extra as String?;
+            final extra = state.extra as Map?;
+            final activationId = extra?['activationId'] as String?;
+            final email = extra?['email'] as String?;
 
             if (activationId == null || activationId.isEmpty) {
               throw Exception('Activation ID is null');
             }
 
-            return PageCreateAccount(
+            if (email == null || email.isEmpty) {
+              throw Exception('Email is null');
+            }
+
+            return PageFinishRegister(
               key: state.pageKey,
               activationId: activationId,
+              email: email,
             );
           },
         ),

@@ -261,11 +261,11 @@ abstract class AppLocalizations {
   /// **'Already have an account?'**
   String get alreadyHaveAnAccount;
 
-  /// No description provided for @name.
+  /// No description provided for @firstName.
   ///
   /// In en, this message translates to:
-  /// **'Name'**
-  String get name;
+  /// **'First Name'**
+  String get firstName;
 
   /// No description provided for @lastName.
   ///
@@ -278,6 +278,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Finish Register'**
   String get finishRegister;
+
+  /// No description provided for @nameTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Name too long'**
+  String get nameTooLong;
+
+  /// No description provided for @userRegisteredSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'User registered successfully'**
+  String get userRegisteredSuccessfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

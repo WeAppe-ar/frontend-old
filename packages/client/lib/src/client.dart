@@ -65,7 +65,7 @@ class Client {
     );
   }
 
-  Future<UserActivation?> activateUser({
+  Future<User?> activateUser({
     required String activationId,
     required String email,
     required String firstName,
@@ -74,7 +74,7 @@ class Client {
   }) async {
     final uri = Uri.http(authority, '/users/activate');
 
-    return http.httpPost<UserActivation>(
+    return http.httpPost<User>(
       uri,
       body: <String, dynamic>{
         'activationId': activationId,
@@ -83,7 +83,7 @@ class Client {
         'lastName': lastName,
         'password': password,
       },
-      parser: UserActivation.fromJson,
+      parser: User.fromJson,
     );
   }
 

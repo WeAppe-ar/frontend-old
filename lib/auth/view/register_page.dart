@@ -8,10 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router_flow/go_router_flow.dart';
 import 'package:weappear/auth/cubit/auth_cubit.dart';
-import 'package:weappear/auth/view/create_account_page.dart';
+import 'package:weappear/auth/view/finish_register_page.dart';
 import 'package:weappear/auth/view/login_page.dart';
 
-import 'package:weappear/onboarding/view/onboarding_page.dart';
 import 'package:weappear/utils/validators.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
@@ -54,8 +53,11 @@ class _ViewRegisterState extends State<ViewRegister> {
       listener: (context, state) {
         if (state.isSuccess) {
           context.goNamed(
-            PageCreateAccount.name,
-            extra: state.activationId,
+            PageFinishRegister.name,
+            extra: {
+              'email': _emailController.text,
+              'activationId': state.activationId,
+            },
           );
         } else if (state.isFailure) {
           if (_debounce.isActive) return;
@@ -194,7 +196,6 @@ class _ViewRegisterState extends State<ViewRegister> {
             _emailController.text,
             _codeController.text,
           );
-      context.goNamed('finish-register');
     }
   }
 }

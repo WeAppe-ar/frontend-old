@@ -16,9 +16,14 @@ import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
 class PageLogin extends StatelessWidget {
-  const PageLogin({super.key});
+  const PageLogin({
+    super.key,
+    this.registerSuccessful = false,
+  });
 
   static String get name => 'login';
+
+  final bool registerSuccessful;
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +32,20 @@ class PageLogin extends StatelessWidget {
         dataPersistenceRepository: context.read<DataPersistenceRepository>(),
         client: context.read<Client>(),
       ),
-      child: const ViewLogin(),
+      child: ViewLogin(
+        registerSuccessful: registerSuccessful,
+      ),
     );
   }
 }
 
 class ViewLogin extends StatefulWidget {
-  const ViewLogin({super.key});
+  const ViewLogin({
+    super.key,
+    required this.registerSuccessful,
+  });
+
+  final bool registerSuccessful;
 
   @override
   State<ViewLogin> createState() => _ViewLoginState();
@@ -45,6 +57,16 @@ class _ViewLoginState extends State<ViewLogin> {
   final _formKey = GlobalKey<FormState>();
   Timer _debounce = Timer(Duration.zero, () {});
   late final l10n = context.l10n;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.registerSuccessful) {
+        WeAppearSnackbar.success(message: l10n.userRegisteredSuccessfully).show(context);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +194,7 @@ class _ViewLoginState extends State<ViewLogin> {
   }
 
   void submit([dynamic _]) {
-    FocusScope.of(context).requestFocus(FocusNode());
+    FocusScope.of(context).unfocus();
     if (_formKey.currentState?.validate() ?? false) {
       context.read<AuthCubit>().login(
             _emailController.text,

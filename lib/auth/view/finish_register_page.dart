@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router_flow/go_router_flow.dart';
 import 'package:weappear/auth/cubit/auth_cubit.dart';
-import 'package:weappear/auth/view/create_account_page.dart';
 import 'package:weappear/auth/view/login_page.dart';
 
 import 'package:weappear/utils/validators.dart';
@@ -16,9 +15,16 @@ import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
 class PageFinishRegister extends StatelessWidget {
-  const PageFinishRegister({super.key});
+  const PageFinishRegister({
+    super.key,
+    required this.email,
+    required this.activationId,
+  });
 
   static String get name => 'finish-register';
+
+  final String email;
+  final String activationId;
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +33,23 @@ class PageFinishRegister extends StatelessWidget {
         dataPersistenceRepository: context.read<DataPersistenceRepository>(),
         client: context.read<Client>(),
       ),
-      child: const ViewFinishRegister(),
+      child: ViewFinishRegister(
+        email: email,
+        activationId: activationId,
+      ),
     );
   }
 }
 
 class ViewFinishRegister extends StatefulWidget {
-  const ViewFinishRegister({super.key});
+  const ViewFinishRegister({
+    super.key,
+    required this.email,
+    required this.activationId,
+  });
+
+  final String email;
+  final String activationId;
 
   @override
   State<ViewFinishRegister> createState() => _ViewFinishRegisterState();
@@ -44,7 +60,7 @@ class _ViewFinishRegisterState extends State<ViewFinishRegister> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final _passwordKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   late final l10n = context.l10n;
 
   @override
@@ -53,8 +69,8 @@ class _ViewFinishRegisterState extends State<ViewFinishRegister> {
       listener: (context, state) {
         if (state.isSuccess) {
           context.goNamed(
-            PageCreateAccount.name,
-            extra: state.activationId,
+            PageLogin.name,
+            extra: true,
           );
         } else if (state.isFailure) {
           if (_debounce.isActive) return;
@@ -66,11 +82,12 @@ class _ViewFinishRegisterState extends State<ViewFinishRegister> {
         return GestureDetector(
           onTap: FocusScope.of(context).unfocus,
           child: Scaffold(
-            body: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 34.sp,
-              ),
-              child: AutofillGroup(
+            body: Form(
+              key: _formKey,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 34.sp,
+                ),
                 child: AutofillGroup(
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
@@ -91,21 +108,18 @@ class _ViewFinishRegisterState extends State<ViewFinishRegister> {
                           ),
                         ),
                         SizedBox(height: 92.sp),
-                        Form(
-                          child: WeappearTextFormField(
-                            validator: null,
-                            hintText: l10n.name,
-                            controller: _firstNameController,
-                          ),
+                        WeappearTextFormField(
+                          validator: (value) => validateName(value, context),
+                          hintText: l10n.firstName,
+                          controller: _firstNameController,
                         ),
-                        SizedBox(height: 5.sp),
-                        Form(
-                          child: WeappearTextFormField(
-                            hintText: l10n.lastName,
-                            controller: _lastNameController,
-                          ),
+                        SizedBox(height: 10.sp),
+                        WeappearTextFormField(
+                          validator: (value) => validateName(value, context),
+                          hintText: l10n.lastName,
+                          controller: _lastNameController,
                         ),
-                        SizedBox(height: 5.sp),
+                        SizedBox(height: 10.sp),
                         WeappearTextFormField(
                           key: const Key('passwordInput'),
                           validator: (value) => validatePassword(value, context),
@@ -118,12 +132,11 @@ class _ViewFinishRegisterState extends State<ViewFinishRegister> {
                           height: 77.sp,
                         ),
                         WeappearMaterialButton(
-                          //key: const Key('finish-register'),
                           onPressed: submit,
                           height: 48.sp,
                           minWidth: 285.sp,
                           isLoading: state.isLoading,
-                          title: l10n.register.toUpperCase(),
+                          title: l10n.finishRegister.toUpperCase(),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.sp),
                           ),
@@ -165,9 +178,11 @@ class _ViewFinishRegisterState extends State<ViewFinishRegister> {
 
   void submit([dynamic _]) {
     FocusScope.of(context).requestFocus(FocusNode());
-    final passwordValid = _passwordKey.currentState?.validate() ?? false;
-    if (passwordValid) {
+    final formValid = _formKey.currentState?.validate() ?? false;
+    if (formValid) {
       context.read<AuthCubit>().activateUser(
+            widget.email,
+            widget.activationId,
             _firstNameController.text,
             _lastNameController.text,
             _passwordController.text,

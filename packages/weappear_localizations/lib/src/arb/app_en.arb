@@ -33,5 +33,7 @@
   "alreadyHaveAnAccount": "Already have an account?",
   "firstName": "First Name",
   "lastName": "Last Name",
-  "finishRegister": "Finish Register"
+  "finishRegister": "Finish Register",
+  "nameTooLong": "Name too long",
+  "userRegisteredSuccessfully": "User registered successfully"
 }
