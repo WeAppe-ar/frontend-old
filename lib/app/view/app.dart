@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router_flow/go_router_flow.dart';
+import 'package:weappear/app/home/view/home_page.dart';
 import 'package:weappear/app/models/logged_in_stream.dart';
 import 'package:weappear/auth/view/finish_register_page.dart';
 import 'package:weappear/auth/view/login_page.dart';
@@ -86,7 +87,7 @@ class _ViewAppState extends State<ViewApp> {
     return GoRouter(
       refreshListenable: LoggedInStream(dataPersistenceRepository.isLoggedInStream),
       debugLogDiagnostics: true,
-      initialLocation: '/login',
+      initialLocation: '/home',
       routes: <GoRoute>[
         GoRoute(
           path: '/login',
@@ -132,6 +133,11 @@ class _ViewAppState extends State<ViewApp> {
           path: '/onboarding',
           name: PageOnboarding.name,
           builder: (_, state) => PageOnboarding(key: state.pageKey),
+        ),
+        GoRoute(
+          path: '/home',
+          name: PageHome.name,
+          builder: (_, state) => PageHome(key: state.pageKey),
         ),
       ],
       redirect: (context, state) {

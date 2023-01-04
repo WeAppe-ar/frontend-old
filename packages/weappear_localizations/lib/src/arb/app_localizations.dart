@@ -290,6 +290,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'User registered successfully'**
   String get userRegisteredSuccessfully;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Inicio'**
+  String get home;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

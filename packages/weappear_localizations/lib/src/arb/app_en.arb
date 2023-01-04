@@ -35,5 +35,6 @@
   "lastName": "Last Name",
   "finishRegister": "Finish Register",
   "nameTooLong": "Name too long",
-  "userRegisteredSuccessfully": "User registered successfully"
+  "userRegisteredSuccessfully": "User registered successfully",
+  "home": "Inicio"
 }

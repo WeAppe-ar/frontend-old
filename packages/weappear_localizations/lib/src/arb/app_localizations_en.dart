@@ -102,4 +102,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get userRegisteredSuccessfully => 'User registered successfully';
+
+  @override
+  String get home => 'Inicio';
 }
