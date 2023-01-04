@@ -36,5 +36,6 @@
   "finishRegister": "Registro Final",
   "nameTooLong": "El nombre es demasiado largo",
   "userRegisteredSuccessfully": "Usuario registrado con éxito",
-  "home": "Home"
+  "home": "Inicio",
+  "proyects" : "Proyectos"
 }

@@ -104,5 +104,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get userRegisteredSuccessfully => 'Usuario registrado con éxito';
 
   @override
-  String get home => 'Home';
+  String get home => 'Inicio';
+
+  @override
+  String get proyects => 'Proyectos';
 }

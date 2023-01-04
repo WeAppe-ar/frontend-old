@@ -28,7 +28,7 @@ class WeappearAppbar extends StatelessWidget with PreferredSizeWidget {
           IconButton(
             onPressed: onPressed,
             icon: Icon(
-              icon,
+              icon ?? Icons.notes,
             ),
             iconSize: _iconSize,
           ),

@@ -3,6 +3,7 @@ import 'package:client/client.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
@@ -33,7 +34,6 @@ class ViewHome extends StatelessWidget {
       backgroundColor: const Color(0xffF5F5F5),
       appBar: WeappearAppbar(
         title: context.l10n.home.toUpperCase(),
-        icon: Icons.notes,
         onPressed: () {},
         sizedBoxWidth: 105.sp,
       ),
@@ -50,13 +50,16 @@ class ViewHome extends StatelessWidget {
               ),
             ),
           ),
-          Divider(
-            height: 100.sp,
-          )
+          Container(
+            alignment: Alignment.center,
+            child: SvgPicture.asset(
+              'assets/images/group_1029.svg',
+            ),
+          ),
         ],
       ),
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(right: 33.sp, bottom: 50.sp),
+        padding: EdgeInsets.only(right: 15.sp, bottom: 20.sp),
         child: WeappearFloatingActionButton(
           onPressed: () {},
         ),

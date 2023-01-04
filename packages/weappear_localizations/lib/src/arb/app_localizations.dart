@@ -294,8 +294,14 @@ abstract class AppLocalizations {
   /// No description provided for @home.
   ///
   /// In en, this message translates to:
-  /// **'Inicio'**
+  /// **'Home'**
   String get home;
+
+  /// No description provided for @proyects.
+  ///
+  /// In en, this message translates to:
+  /// **'Proyects'**
+  String get proyects;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
