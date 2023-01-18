@@ -10,7 +10,7 @@ class WeappearMaterialButton extends StatelessWidget {
   const WeappearMaterialButton({
     super.key,
     required this.onPressed,
-    required this.height,
+    this.height,
     required this.minWidth,
     this.padding,
     this.elevation,
@@ -28,7 +28,7 @@ class WeappearMaterialButton extends StatelessWidget {
   /// This method creates a [WeappearMaterialButton] with outlined styling.
   factory WeappearMaterialButton.outlined({
     required void Function()? onPressed,
-    required double height,
+    double? height,
     required double minWidth,
     required String title,
     double? fontSize,
@@ -62,7 +62,7 @@ class WeappearMaterialButton extends StatelessWidget {
   }
 
   /// The height for the button.
-  final double height;
+  final double? height;
 
   ///the onpressed for the button
   final void Function()? onPressed;
@@ -120,8 +120,13 @@ class WeappearMaterialButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(5.sp),
           ),
       child: isLoading
-          ? CircularProgressIndicator(
-              color: fontColor,
+          ? SizedBox(
+              height: 20.sp,
+              width: 20.sp,
+              child: CircularProgressIndicator(
+                color: fontColor,
+                strokeWidth: 3.sp,
+              ),
             )
           : Text(
               title,

@@ -50,7 +50,10 @@ class _WeappearTextFormFieldState extends State<WeappearTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: 42.sp,
+      ),
       child: TextFormField(
         onSaved: widget.onSaved,
         controller: widget.controller,

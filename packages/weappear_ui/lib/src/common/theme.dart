@@ -5,7 +5,7 @@ class WeAppearTheme {
   /// The default theme.
   static ThemeData get lightTheme {
     return ThemeData(
-      fontFamily: 'Gravity',
+      fontFamily: 'ProductSans',
       backgroundColor: Colors.white,
       appBarTheme: const AppBarTheme(
         color: Color(0xFFFBFBFB),

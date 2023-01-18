@@ -9,7 +9,7 @@ Future<void> main() async {
   final dataPersistenceRepository = DataPersistenceRepository();
   await dataPersistenceRepository.init();
   final client = Client(
-    authority: 'localhost:8080',
+    authority: '10.0.2.2:8000',
     token: dataPersistenceRepository.getAccessToken,
   );
 
