@@ -41,7 +41,7 @@ class ViewHome extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 45.sp, left: 33.sp),
+            padding: EdgeInsets.only(top: 20.sp, left: 20.sp),
             child: Text(
               'Proyectos',
               style: TextStyle(
