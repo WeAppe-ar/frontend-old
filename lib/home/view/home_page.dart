@@ -31,51 +31,63 @@ class ViewHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF5F5F5),
+      backgroundColor: Colors.white,
       appBar: WeappearAppbar(
-        title: context.l10n.home.toUpperCase(),
-        onPressed: () {},
-        sizedBoxWidth: 105.sp,
+        title: context.l10n.home,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Stack(
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 20.sp, left: 20.sp),
-            child: Text(
-              'Proyectos',
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w700,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 20.sp, left: 20.sp),
+                child: Text(
+                  'Proyectos',
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              SizedBox(height: 10.sp),
+              Divider(
+                color: const Color(0xffDADADA),
+                thickness: 1.sp,
+              ),
+            ],
+          ),
+          Align(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 80.sp,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 132.sp,
+                    child: SvgPicture.asset(
+                      'assets/images/Group 1029.svg',
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.sp,
+                  ),
+                  Text(
+                    context.l10n.homeText,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      color: const Color(0xffC9C8C8),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
-          ),
-          SizedBox(
-            height: 202.sp,
-          ),
-          Container(
-            alignment: Alignment.center,
-            height: 132.sp,
-            child: SvgPicture.asset(
-              'assets/images/Group 1029.svg',
-            ),
-          ),
-          SizedBox(
-            height: 20.sp,
-          ),
-          SizedBox(
-            width: 209.sp,
-            height: 49.sp,
-            child: Text(
-              context.l10n.homeText,
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w400,
-                color: const Color(0xffC9C8C8),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
+          )
         ],
       ),
       floatingActionButton: Padding(

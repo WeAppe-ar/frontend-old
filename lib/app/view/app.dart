@@ -31,7 +31,7 @@ class App extends StatelessWidget {
       SystemUiOverlayStyle.dark.copyWith(
         systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.light,
-        statusBarColor: Colors.transparent,
+        statusBarColor: const Color(0xffF1F1F1),
       ),
     );
     return MultiRepositoryProvider(

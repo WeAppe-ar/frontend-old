@@ -1,5 +1,6 @@
 import 'package:appsize/appsize.dart';
 import 'package:flutter/material.dart';
+import 'package:weappear_ui/weappear_ui.dart';
 
 // {@template weappear_Appbar}
 /// A [AppBar] with WeAppear styling.
@@ -8,39 +9,41 @@ class WeappearAppbar extends StatelessWidget with PreferredSizeWidget {
   /// {@template weappear_Appbar}
   const WeappearAppbar({
     super.key,
-    this.icon,
-    this.iconSize,
-    this.fontSize,
-    this.fontWeight = FontWeight.w700,
-    this.title = 'Title',
-    this.fontFamily,
-    this.onPressed,
-    this.sizedBoxWidth,
+    required this.title,
   });
+
+  ///The title
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    final _iconSize = iconSize ?? 30.sp;
-    return Padding(
-      padding: EdgeInsets.only(left: 10.sp, top: 25.sp),
-      child: Row(
+    return AppBar(
+      elevation: 3,
+      centerTitle: true,
+      automaticallyImplyLeading: false,
+      title: Stack(
+        alignment: AlignmentDirectional.center,
         children: [
-          IconButton(
-            onPressed: onPressed,
-            icon: Icon(
-              icon ?? Icons.notes,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.menu,
+                color: WeappearColors.grayText,
+              ),
+              iconSize: 30.sp,
             ),
-            iconSize: _iconSize,
           ),
-          SizedBox(
-            width: sizedBoxWidth,
-          ),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: fontSize ?? 20.sp,
-              fontWeight: fontWeight,
-              fontFamily: fontFamily,
+          Align(
+            child: Text(
+              title.toUpperCase(),
+              style: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w700,
+                color: WeappearColors.grayText,
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
         ],
@@ -49,30 +52,5 @@ class WeappearAppbar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
-  ///the icon
-  final IconData? icon;
-
-  ///the icon size
-  final double? iconSize;
-
-  ///the width for the sizedBox
-  final double? sizedBoxWidth;
-
-  ///The title
-  final String title;
-
-  /// The font size for the title.
-  final double? fontSize;
-
-  /// The font weight for the title.
-  final FontWeight? fontWeight;
-
-  ///the font family for the title;
-  final String? fontFamily;
-
-  ///the onpressed for the icon
-  final void Function()? onPressed;
 }
