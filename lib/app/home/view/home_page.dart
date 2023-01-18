@@ -20,7 +20,7 @@ class PageHome extends StatelessWidget {
         dataPersistenceRepository: context.read<DataPersistenceRepository>(),
         client: context.read<Client>(),
       ),
-      child: ViewHome(),
+      child: const ViewHome(),
     );
   }
 }
@@ -50,10 +50,30 @@ class ViewHome extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(
+            height: 202.sp,
+          ),
           Container(
             alignment: Alignment.center,
+            height: 132.sp,
             child: SvgPicture.asset(
-              'assets/images/group_1029.svg',
+              'assets/images/Group 1029.svg',
+            ),
+          ),
+          SizedBox(
+            height: 20.sp,
+          ),
+          SizedBox(
+            width: 209.sp,
+            height: 49.sp,
+            child: Text(
+              context.l10n.homeText,
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+                color: const Color(0xffC9C8C8),
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
         ],

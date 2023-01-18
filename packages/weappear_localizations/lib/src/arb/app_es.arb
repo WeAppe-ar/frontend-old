@@ -37,5 +37,6 @@
   "nameTooLong": "El nombre es demasiado largo",
   "userRegisteredSuccessfully": "Usuario registrado con éxito",
   "home": "Inicio",
-  "proyects" : "Proyectos"
+  "proyects" : "Proyectos",
+  "homeText": "¡Bienvenidos a Weappe.ar!Empieza a utilizar las funciones de nuestra app"
 }

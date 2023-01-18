@@ -108,4 +108,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get proyects => 'Proyects';
+
+  @override
+  String get homeText => 'Welcome to Weappe.ar! Start using the functions of our app';
 }

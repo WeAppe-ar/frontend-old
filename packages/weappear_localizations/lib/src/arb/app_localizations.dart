@@ -302,6 +302,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Proyects'**
   String get proyects;
+
+  /// No description provided for @homeText.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Weappe.ar! Start using the functions of our app'**
+  String get homeText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
