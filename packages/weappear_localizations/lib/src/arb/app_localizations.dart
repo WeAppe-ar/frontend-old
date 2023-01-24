@@ -308,6 +308,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome to Weappe.ar! Start using the functions of our app'**
   String get homeText;
+
+  /// No description provided for @createaproject.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a project'**
+  String get createaproject;
+
+  /// No description provided for @joinaproject.
+  ///
+  /// In en, this message translates to:
+  /// **'Join a project'**
+  String get joinaproject;
+
+  /// No description provided for @findaproject.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a project'**
+  String get findaproject;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

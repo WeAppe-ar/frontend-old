@@ -111,4 +111,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get homeText => '¡Bienvenidos a Weappe.ar!Empieza a utilizar las funciones de nuestra app';
+
+  @override
+  String get createaproject => 'Create a project';
+
+  @override
+  String get joinaproject => 'Join a project';
+
+  @override
+  String get findaproject => 'Buscar un proyecto';
 }

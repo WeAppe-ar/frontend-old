@@ -19,6 +19,7 @@ class WeappearAppbar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 3,
+      shadowColor: Colors.transparent,
       centerTitle: true,
       automaticallyImplyLeading: false,
       title: Stack(

@@ -4,10 +4,10 @@ import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:weappear/home/cubit/home_cubit.dart';
+import 'package:weappear/home/widgets/home_option_modal.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
-
-import '../cubit/home_cubit.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome({super.key});
@@ -43,7 +43,7 @@ class ViewHome extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 20.sp, left: 20.sp),
                 child: Text(
-                  'Proyectos',
+                  context.l10n.proyects,
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w700,
@@ -60,7 +60,7 @@ class ViewHome extends StatelessWidget {
           Align(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: 80.sp,
+                horizontal: 86.sp,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -93,7 +93,21 @@ class ViewHome extends StatelessWidget {
       floatingActionButton: Padding(
         padding: EdgeInsets.only(right: 15.sp, bottom: 20.sp),
         child: WeappearFloatingActionButton(
-          onPressed: () {},
+          onPressed: () async {
+            final option = await HomeOptionsModal.show(context);
+            if (option == null) return;
+            switch (option) {
+              case HomeOption.create:
+                final bool createdStatus;
+                break;
+              case HomeOption.join:
+                // TODO: Handle this case.
+                break;
+              case HomeOption.find:
+                // TODO: Handle this case.
+                break;
+            }
+          },
         ),
       ),
     );

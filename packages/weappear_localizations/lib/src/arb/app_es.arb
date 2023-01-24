@@ -38,5 +38,8 @@
   "userRegisteredSuccessfully": "Usuario registrado con éxito",
   "home": "Inicio",
   "proyects" : "Proyectos",
-  "homeText": "¡Bienvenidos a Weappe.ar!Empieza a utilizar las funciones de nuestra app"
+  "homeText": "¡Bienvenidos a Weappe.ar!Empieza a utilizar las funciones de nuestra app",
+  "Createaproject": "Crear un proyecto",
+  "Joinaproject": "Unirse a un proyecto",
+  "findaproject": "Buscar un proyecto"
 }

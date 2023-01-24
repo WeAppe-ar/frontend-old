@@ -87,7 +87,7 @@ class _ViewAppState extends State<ViewApp> {
     return GoRouter(
       refreshListenable: LoggedInStream(dataPersistenceRepository.isLoggedInStream),
       debugLogDiagnostics: true,
-      initialLocation: '/home',
+      initialLocation: '/login',
       routes: <GoRoute>[
         GoRoute(
           path: '/login',
