@@ -3,7 +3,7 @@ import 'package:auth_repository/auth_repository.dart';
 import 'package:data_persistence/data_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weappear/login/view/login_page.dart';
+import 'package:weappear/register/view/register_page.dart';
 import 'package:weappear_localizations/weappear_localizations.dart';
 import 'package:weappear_ui/weappear_ui.dart';
 
@@ -48,27 +48,16 @@ class _ViewAppState extends State<ViewApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: WeAppearTheme.lightTheme,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: Navigator(
-        onPopPage: (Route<dynamic> route, dynamic result) =>
-            route.didPop(result),
+        onPopPage: (Route<dynamic> route, dynamic result) => route.didPop(result),
         pages: const [
           MaterialPage<void>(
-            child: PageLogin(),
-            key: ValueKey('login'),
-          ),
-          MaterialPage<void>(
-            child: PageLogin(),
-            key: ValueKey('login2asd'),
+            child: PageRegister(),
           ),
         ],
       ),
